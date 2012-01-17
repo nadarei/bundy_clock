@@ -1,0 +1,13 @@
+- use Rails date for index page (formatted)
+- convert application.html.erb to haml
+- create User model, along with users table (schema.rb)
+  - login, name
+- create user records for Benj, Ace, Rico and Mikong
+- update index page to dynamically load user records (do not hardcode)
+- create TimeLog model, time_logs table
+  - columns: date, in, out, user_id
+  - belongs_to :user
+  - update user 
+- create Comment model, comments table
+- TimeLog model has many comments (description)
+- omniauth (alternative to authlogic using Google) 
