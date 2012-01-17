@@ -1,6 +1,6 @@
 #log
   %h1 Bundy Clock
-  %p#date Date
+  %p#date= Date.today.strftime("%A, %B %e, %Y")
   %table
     %tr
       %th
