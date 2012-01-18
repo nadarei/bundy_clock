@@ -6,3 +6,14 @@
 - create Comment model, comments table
 - TimeLog model has many comments (description)
 - omniauth (alternative to authlogic using Google) 
+
+TimeLogs
+- get timelog of user for the day
+  - @time_log = @user.time_logs.find_by_date(current_date)
+  - or @time_log = TimeLog.new
+  - ideally: user will have @user.current_time_log
+- look for one-button submit helper
+- update action in TimeLogsController
+- review rails naming convention (controller names)
+- save the time_log in create action
+
