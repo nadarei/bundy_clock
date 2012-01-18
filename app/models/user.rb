@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  has_one :time_log
+  has_many :time_log
 end
