@@ -1,8 +1,3 @@
-- use Rails date for index page (formatted)
-- convert application.html.erb to haml
-- create User model, along with users table (schema.rb)
-  - login, name
-- create user records for Benj, Ace, Rico and Mikong
 - update index page to dynamically load user records (do not hardcode)
 - create TimeLog model, time_logs table
   - columns: date, in, out, user_id
