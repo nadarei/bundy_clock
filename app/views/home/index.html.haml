@@ -7,27 +7,11 @@
       %th Time In
       %th Time Out
       %th Comments
-    %tr#ace
-      %td Ace
-      %td.in
-        %button Time in
-      %td.out
-      %td.comment
-    %tr
-      %td Benj
-      %td.in
-        %button Time in
-      %td.out
-      %td.comment
-    %tr
-      %td Mikong
-      %td.in
-        %button Time in
-      %td.out
-      %td.comment
-    %tr
-      %td Rico
-      %td.in
-        %button Time in
-      %td.out
-      %td.comment
+
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td.in
+          %button Time in
+        %td.out
+        %td.comment
