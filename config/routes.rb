@@ -1,4 +1,8 @@
 BundyClock::Application.routes.draw do
+  #get "time_logs/time_in"
+
+  #get "time_logs/time_out"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
