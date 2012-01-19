@@ -1,15 +1,17 @@
 class TimeLogsController < ApplicationController
-  # TODO: use current_user when auth is implemented
-  # POST /time_in/user_id
+  # POST /time_logs/time_in
   def time_in 
-    @time_in = TimeLog.new(date: Date.today in: Time.now, user_id: user_id)
+    @time_in = TimeLog.create(date: Date.today, in: Time.now, user_id: params[:user_id]) # Time.now is UTC; TODO: use auth later to pass user_id
+
+    redirect_to '/'
   end
 
-  # PUT /time_in/user_id/edit
-  def edit_in
+  # PUT 
+  def edit
     @time_in = TimeLog.find(date: Date.today, user_id: user_id)
+  end
 
-  # PUT /time_out/user_id/edit
+  # PUT
   def time_out
     @time_out = TimeLog.find(date: Date.today, user_id: user_id)
   end

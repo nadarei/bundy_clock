@@ -12,6 +12,10 @@
       %tr
         %td= user.name
         %td.in
-          %button Time in
+          - if !user.current_time_log
+            = form_tag(controller: "time_logs", action: "time_in", method: "post") do
+              = button_tag "Time In"
+              -# use auth later for passing user.id 
+              %input{name: "user_id", type: "hidden", value: user.id}
         %td.out
         %td.comment

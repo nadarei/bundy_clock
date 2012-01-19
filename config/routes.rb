@@ -1,5 +1,5 @@
 BundyClock::Application.routes.draw do
-  #get "time_logs/time_in"
+  post "time_logs/time_in"
 
   #get "time_logs/time_out"
 
