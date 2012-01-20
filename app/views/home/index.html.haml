@@ -1,6 +1,6 @@
 #log
   %h1 Bundy Clock
-  %p#date= Date.today.strftime("%A, %B %e, %Y")
+  %p#date= long_date Date.today
   %table
     %tr
       %th
@@ -12,12 +12,24 @@
       %tr
         %td= user.name
         %td.in
-          - if !user.current_time_log
-            = form_tag(controller: "time_logs", action: "time_in", method: "post") do
+
+          - if user.timed_in_today?
+            = short_time user.current_time_log.in
+
+          - else
+            = form_tag(time_in_path, method: :post) do
               = button_tag "Time In"
               -# use auth later for passing user.id 
               %input{name: "user_id", type: "hidden", value: user.id}
-          - else
-            = user.current_time_log[:in].localtime.strftime("%I:%M%p")
+
         %td.out
+
+          - if user.timed_out_today?
+            = short_time user.current_time_log.out
+
+          - elsif user.must_time_out_today?
+            = form_tag(time_out_path, method: :put) do
+              = button_tag "Time Out"
+              %input{name: "time_log_id", type: "hidden", value: user.current_time_log.id}
+
         %td.comment

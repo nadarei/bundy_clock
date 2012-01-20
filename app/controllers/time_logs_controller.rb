@@ -8,14 +8,16 @@ class TimeLogsController < ApplicationController
     redirect_to '/'
   end
 
-  # PUT 
+  # PUT /time_logs/time_in
   def edit
-    @time_in = TimeLog.find(date: Date.today, user_id: user_id)
   end
 
-  # PUT
+  # PUT /time_logs/time_out
   def time_out
-    @time_out = TimeLog.find(date: Date.today, user_id: user_id)
+    current_time_log = TimeLog.find(params[:time_log_id])
+    current_time_log.update_attributes out: Time.now
+
+    redirect_to '/'
   end
 
 end
