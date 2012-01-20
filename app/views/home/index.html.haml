@@ -17,5 +17,7 @@
               = button_tag "Time In"
               -# use auth later for passing user.id 
               %input{name: "user_id", type: "hidden", value: user.id}
+          - else
+            = user.current_time_log[:in].localtime.strftime("%I:%M%p")
         %td.out
         %td.comment
