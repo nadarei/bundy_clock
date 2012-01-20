@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def hello
-    "is it me youre looking for"
-  end
 
   def short_time(time)
     time.localtime.strftime("%I:%M%p")
