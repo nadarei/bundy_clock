@@ -12,7 +12,8 @@ class TimeLogsController < ApplicationController
   def update
     current_time_log = TimeLog.find(params[:time_log_id])
     current_time_log.update_attributes in: params[:time]
-    # create comment
+
+    Comment.create time_log: current_time_log, comments: params[:comment]
 
     redirect_to '/'
   end

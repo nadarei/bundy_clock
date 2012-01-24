@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     current_time_log && current_time_log.out
   end
 
+  def update_time?
+    current_time_log && current_time_log.comment
+  end
+
 end

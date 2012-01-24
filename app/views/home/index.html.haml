@@ -35,3 +35,7 @@
               %input{name: "time_log_id", type: "hidden", value: user.current_time_log.id}
 
         %td.comment
+
+          - if user.update_time?
+            = user.current_time_log.comment.comments
+
