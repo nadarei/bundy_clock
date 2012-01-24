@@ -8,8 +8,13 @@ class TimeLogsController < ApplicationController
     redirect_to '/'
   end
 
-  # PUT /time_logs/time_in
-  def edit
+  # PUT /time_logs/update
+  def update
+    current_time_log = TimeLog.find(params[:time_log_id])
+    current_time_log.update_attributes in: params[:time]
+    # create comment
+
+    redirect_to '/'
   end
 
   # PUT /time_logs/time_out

@@ -1,6 +1,8 @@
 BundyClock::Application.routes.draw do
   post "time_logs/time_in", as: :time_in
 
+  put "time_logs/update", as: :update
+
   put "time_logs/time_out", as: :time_out
 
   # The priority is based upon order of creation:
