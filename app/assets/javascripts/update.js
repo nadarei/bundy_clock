@@ -5,12 +5,12 @@ $('a.time').live('click', function(e) {
   var time = prompt("What time?");
   var comment = prompt("Why did you change it?");
   var today = new Date();
+  // ISO8601 date format: 2012-01-25T07:12:00.000Z
   var formedTime = new Date(today.toDateString() + " " + time).toISOString();
 
+  var inOut = $(this).closest('td').attr('class');
   var tr = $(this).closest('tr');
   var employee = tr.attr('data-employee');
-
-  tr.html("<td>Updating...</td>");
 
   $.ajax({
     url: "/time_logs/update",
@@ -18,6 +18,7 @@ $('a.time').live('click', function(e) {
     data: {
       _method: "PUT",
       time_log_id: timeLogId,
+      in_out: inOut,
       time: formedTime,
       comment: comment
     },

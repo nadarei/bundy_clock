@@ -11,7 +11,11 @@ class TimeLogsController < ApplicationController
   # PUT /time_logs/update
   def update
     current_time_log = TimeLog.find(params[:time_log_id])
-    current_time_log.update_attributes in: params[:time]
+    if params[:in_out] == 'in'
+      current_time_log.update_attributes in: params[:time]
+    elsif params[:in_out] == 'out'
+      current_time_log.update_attributes out: params[:time]
+    end
 
     Comment.create time_log: current_time_log, comments: params[:comment]
 

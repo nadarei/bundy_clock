@@ -26,7 +26,7 @@
         %td.out
 
           - if user.timed_out_today?
-            %a.time{href: "#"}
+            %a.time{data: { timelogid: user.current_time_log.id }, href: "#"}
               = short_time user.current_time_log.out
 
           - elsif user.must_time_out_today?
