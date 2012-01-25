@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def short_time(time)
-    time.localtime.strftime("%I:%M%p")
+    time.localtime.strftime("%H:%M")
   end
 
   def long_date(date)
