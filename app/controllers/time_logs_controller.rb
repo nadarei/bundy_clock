@@ -17,7 +17,13 @@ class TimeLogsController < ApplicationController
       current_time_log.update_attributes out: params[:time]
     end
 
-    Comment.create time_log: current_time_log, comments: params[:comment]
+    current_comment = current_time_log.comment
+
+    if current_comment.nil?
+      Comment.create time_log: current_time_log, comments: params[:comment]
+    else
+      current_comment.update_attributes comments: params[:comment]
+    end
 
     redirect_to '/'
   end
