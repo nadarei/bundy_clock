@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+puts "Seeding users..."
 ['Ace', 'Benj', 'Mikong', 'Rico'].each do |name|
   User.create(name: name)
 end
+
+puts "Done."
