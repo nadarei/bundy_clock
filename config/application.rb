@@ -50,5 +50,11 @@ module BundyClock
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.compile = true
+    config.assets.precompile += [
+      'bundy.css', 'application.css',
+      'application.js', 'update.js'
+    ]
   end
 end
