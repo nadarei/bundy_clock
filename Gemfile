@@ -5,8 +5,15 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+# Use MySQL locally in development mode
+group :development, :test do
+  gem 'mysql2'
+end
 
+# Use postgresql for Heroku.
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
