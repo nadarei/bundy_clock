@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def short_time(time)
-    time.localtime.strftime("%H:%M")
+    time.in_time_zone('Beijing').strftime("%H:%M")
   end
 
   def long_date(date)
