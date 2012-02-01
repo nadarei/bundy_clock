@@ -10,7 +10,7 @@
 
     - @users.each do |user|
       %tr{data: { employee: user.name } }
-        %td= link_to user.name, user
+        %td= link_to user.name, user, class: "user"
         %td.in
 
           - if user.timed_in_today?
