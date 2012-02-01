@@ -61,12 +61,12 @@ td.in, td.out {
   text-align: center;
 }
 
-a.time {
+a {
   color: #333;
   text-decoration: none;
 }
 
-a.time:hover {
+a:hover {
   background-color: #eee;
   color: #37a;
   padding: 1px 5px;
