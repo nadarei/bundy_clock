@@ -1,0 +1,24 @@
+#user
+  %h1= @user.name
+
+  %table
+    %tr
+      %th Date
+      %th Time In
+      %th Time Out
+      %th Comments
+
+    - @user.time_logs.each do |time_log|
+      %tr
+        %td= time_log.date
+        %td
+          - if time_log.in
+            = short_time time_log.in
+          - else
+            = "-"
+        %td
+          - if time_log.out
+            = short_time time_log.out
+          - else
+            = "-"
+        %td= time_log.comment.comments if time_log.comment
