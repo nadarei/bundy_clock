@@ -26,10 +26,22 @@
             = "-"
 
         %td.comment
-          = time_log.comment.comments if time_log.comment
+          - if time_log.comment
+            = time_log.comment.comments
+          - else
+            = "-"
 
         %td.hours
           - if time_log.hours
             = time_log.hours.round(2)
           - else
             = "-"
+
+    %tr.total
+      %td
+        %strong Total Hours
+      %td
+      %td
+      %td
+      %td.hours
+        %strong= @total_hours.round(2)
