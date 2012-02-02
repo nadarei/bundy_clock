@@ -1,9 +1,18 @@
 $('a.time').live('click', function(e) {
   e.preventDefault();
 
-  var timeLogId = $(this).attr('data-timelogid');
   var time = prompt("What time?");
+
+  if (time === null) {
+    return;
+  } else if (!time.match(/^\d+:\d\d$/)) {
+    alert("Time must be in 24-hour HH:MM format.");
+    return;
+  }
+
   var comment = prompt("Why did you change it?");
+
+  var timeLogId = $(this).attr('data-timelogid');
   var today = new Date();
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
   var formedTime = new Date(today.toDateString() + " " + time).toISOString();
