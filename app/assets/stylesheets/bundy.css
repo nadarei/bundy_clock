@@ -31,6 +31,13 @@ body, td, th {
   font-size: 11pt;
 }
 
+#user {
+  width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+}
+
 table {
   margin-top: 40px;
   border-collapse: collapse;
@@ -57,7 +64,7 @@ td {
   min-width: 100px;
 }
 
-td.in, td.out {
+td.in, td.out, td.hours {
   text-align: center;
 }
 
