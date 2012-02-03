@@ -27,6 +27,7 @@ gem 'jquery-rails'
 
 gem 'haml'
 gem 'thin'
+gem 'omniauth-google-oauth2', git: 'git://github.com/zquestz/omniauth-google-oauth2.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
