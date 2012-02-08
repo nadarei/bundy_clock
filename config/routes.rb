@@ -5,6 +5,14 @@ BundyClock::Application.routes.draw do
 
   put "time_logs/time_out", as: :time_out
 
+  get "/login" => "sessions#new", as: :login
+
+  get "/logout" => "sessions#destroy", as: :logout
+
+  match "/auth/:provider/callback" => "sessions#create"
+
+  match "/auth/failure" => "sessions#failure"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

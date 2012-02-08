@@ -8,4 +8,15 @@
 
   %body
 
+    #top
+      %a.home{href: '/'}
+        Bundy clock
+      #aux
+        - if logged_in?
+          = "Hello, #{current_user.email}"
+          %a{href: logout_path} Logout
+
+        - else
+          %a{href: login_path} Login
+
     = yield

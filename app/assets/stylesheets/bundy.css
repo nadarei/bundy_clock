@@ -1,5 +1,7 @@
 body {
   background: #fafafa;
+  margin: 0;
+  padding: 0;
 }
 
 body, td, th {
@@ -7,6 +9,25 @@ body, td, th {
   font-size: 10pt;
 }
 
+/* Top bar */
+#top {
+  background: #999;
+  color: #ddd;
+  padding: 8px 20px;
+  overflow: hidden;
+}
+
+#top a {
+  float: left;
+  color: white;
+  font-size: 1.1em;
+}
+
+#top #aux {
+  float: right;
+}
+
+/* The time log */
 #log {
   width: 500px;
   margin: 40px auto;
