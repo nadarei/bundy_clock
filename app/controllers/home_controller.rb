@@ -1,5 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @users = User.order('name')
+    if logged_in?
+      @users = User.order('name')
+      render action: 'index'
+    else
+      render action: 'home'
+    end
   end
 end
