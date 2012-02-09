@@ -10,5 +10,6 @@
                       ||----w |
                       ||     ||
       
-  %p
-    = link_to "Log In", login_path
+  %p#login
+    = form_tag(login_path, method: :get) do
+      = button_tag "Log in via Google"

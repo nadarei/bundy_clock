@@ -5,7 +5,11 @@ module ApplicationHelper
     time.in_time_zone.strftime("%H:%M")
   end
 
-  def long_date(time)
-    time.in_time_zone.strftime("%A, %B %e, %Y")
+  def just_date(time)
+    time.in_time_zone.strftime("%B %e, %Y")
+  end
+
+  def just_day(time)
+    time.in_time_zone.strftime("%A")
   end
 end
