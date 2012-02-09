@@ -1,3 +1,9 @@
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    var token = $('meta[name="csrf-token"]').attr('content');
+    xhr.setRequestHeader('X-CSRF-Token', token);
+  }
+});
 $('a.time').live('click', function(e) {
   e.preventDefault();
 
