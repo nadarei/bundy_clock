@@ -5,7 +5,7 @@ class TimeLogsController < ApplicationController
     @user = User.find(params[:user_id])
     @user.time_logs.create(date: Date.today, in: Time.now)
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
   # PUT /time_logs/time_out
@@ -13,7 +13,7 @@ class TimeLogsController < ApplicationController
     current_time_log = TimeLog.find(params[:time_log_id])
     current_time_log.update_attributes out: Time.now
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
   # PUT /time_logs/update
@@ -34,7 +34,7 @@ class TimeLogsController < ApplicationController
       current_comment.update_attributes comments: params[:comment]
     end
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
 end

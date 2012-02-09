@@ -1,6 +1,6 @@
 #log
-  %h1 Bundy Clock
-  %p#date= long_date Time.now
+  %h1= just_date Time.now
+  %p#day= just_day Time.now
   %table
     %tr
       %th
@@ -21,7 +21,6 @@
             - else
               = form_tag(time_in_path, method: :post) do
                 = button_tag "Time In"
-                -# use auth later for passing user.id
                 %input{name: "user_id", type: "hidden", value: user.id}
 
           - else
