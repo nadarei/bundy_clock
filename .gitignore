@@ -18,4 +18,4 @@
 config/database.yml
 .rvmrc
 .DS_Store
-config/initializers/omniauth.rb
+lib/tasks/users.rake
