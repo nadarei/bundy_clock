@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
       session[:user_id] = user.id
 
-      redirect_to '/'
+      redirect_to root_url
     else
       render text: "You're not in the system. Go away!"
     end
@@ -24,6 +24,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
 
-    redirect_to '/'
+    redirect_to root_url
   end
 end
