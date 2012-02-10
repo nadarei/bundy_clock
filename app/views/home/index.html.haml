@@ -21,12 +21,10 @@
             - else
               = form_tag(time_in_path, method: :post) do
                 = button_tag "Time In"
-                %input{name: "user_id", type: "hidden", value: user.id}
 
           - else
             - if user.timed_in_today?
-              %a.time{data: { timelogid: user.current_time_log.id }, href: "#"}
-                = short_time user.current_time_log.in
+              = short_time user.current_time_log.in
 
             - else
               not in yet
@@ -35,18 +33,16 @@
 
           - if user == current_user
             - if user.timed_out_today?
-              %a.time{data: { timelogid: user.current_time_log.id }, href: "#"}
+              %a.time{href: "#"}
                 = short_time user.current_time_log.out
 
             - elsif user.must_time_out_today?
               = form_tag(time_out_path, method: :put) do
                 = button_tag "Time Out"
-                %input{name: "time_log_id", type: "hidden", value: user.current_time_log.id}
 
           - else
             - if user.timed_out_today?
-              %a.time{data: { timelogid: user.current_time_log.id }, href: "#"}
-                = short_time user.current_time_log.out
+              = short_time user.current_time_log.out
 
         %td.comment
 
