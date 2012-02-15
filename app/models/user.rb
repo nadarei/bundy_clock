@@ -1,23 +1,45 @@
 class User < ActiveRecord::Base
   has_many :time_logs
 
+  def time_log_for(date=Date.today)
+    self.time_logs.where('date = :date', date: date).first
+    self.time_logs.find_by_date(date)
+  end
+
+  def timed_in?(date)
+    time_log_for(date)
+  end
+
+  def must_time_out?(date)
+    log = time_log_for(date)
+    log && !log.out
+  end
+
+  def timed_out?(date)
+    log = time_log_for(date)
+    log && log.out
+  end
+  
+  def update_time?(date=Date.today)
+    log = time_log_for(date)
+    log && log.comment
+  end
+
+  # Old behavior below!
+  
   def current_time_log
-    self.time_logs.where('date = :date', { date: Date.today }).first
+    time_log_for Date.today
   end
 
   def timed_in_today?
-    current_time_log
+    timed_in? Date.today
   end
 
   def must_time_out_today?
-    current_time_log && !current_time_log.out
+    must_time_out? Date.today
   end
 
   def timed_out_today?
-    current_time_log && current_time_log.out
-  end
-
-  def update_time?
-    current_time_log && current_time_log.comment
+    timed_out? Date.today
   end
 end

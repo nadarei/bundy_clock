@@ -13,6 +13,8 @@ BundyClock::Application.routes.draw do
 
   match "/auth/failure" => "sessions#failure"
 
+  get "/current_month" => "home#current_month"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
