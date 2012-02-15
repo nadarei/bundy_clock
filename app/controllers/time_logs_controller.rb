@@ -1,7 +1,7 @@
 class TimeLogsController < ApplicationController
   # POST /time_logs/time_in
   def time_in 
-    current_user.time_logs.create(date: Date.today, in: Time.now)
+    current_user.time_logs.create date: Date.today, in: Time.now
 
     redirect_to root_url
   end
