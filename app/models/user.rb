@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :time_logs
 
   def time_log_for(date=Date.today)
-    self.time_logs.where('date = :date', date: date).first
+    # self.time_logs.where(date: date).first
     self.time_logs.find_by_date(date)
   end
 

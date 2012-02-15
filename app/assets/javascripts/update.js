@@ -4,6 +4,7 @@ $.ajaxSetup({
     xhr.setRequestHeader('X-CSRF-Token', token);
   }
 });
+
 $('a.time').live('click', function(e) {
   e.preventDefault();
 
@@ -17,11 +18,11 @@ $('a.time').live('click', function(e) {
   }
 
   var comment = prompt("Why did you change it?");
-
-  var timeLogId = $(this).attr('data-timelogid');
   var today = new Date();
+  var date = $(this).closest('table').attr('data-date');
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
-  var formedTime = new Date(today.toDateString() + " " + time).toISOString();
+  var formedDate = new Date(date + " " + time).toISOString();
+  var formedTime = new Date(date + " " + time).toISOString();
   var formedComment;
 
   var inOut = $(this).closest('td').attr('class');
@@ -46,8 +47,8 @@ $('a.time').live('click', function(e) {
     type: "POST",
     data: {
       _method: "PUT",
-      time_log_id: timeLogId,
       in_out: inOut,
+      date: formedDate,
       time: formedTime,
       comment: formedComment
     },
@@ -57,5 +58,4 @@ $('a.time').live('click', function(e) {
       tr.html(html);
     }
   });
-
 });

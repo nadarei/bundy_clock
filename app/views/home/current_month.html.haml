@@ -7,7 +7,7 @@
     %h3
       = date
 
-    %table 
+    %table{data: { date: date } }
 
       - @users.each do |user|
         
@@ -21,18 +21,18 @@
 
             - if user == current_user
               - if user.timed_in?(date)
-                %a.time{data: { timelogid: time_log.id }, href: "#"}
+                %a.time{href: "#"}
                   = short_time time_log.in
               - else
-                = form_tag(time_in_path, method: :post) do
-                  = button_tag "Time In"
+                %a.time{href: "#"}
+                  No time in 
   
             - else
               - if user.timed_in?(date)
                 = short_time time_log.in
   
               - else
-                not in 
+                No time in
   
           %td.out
   
@@ -41,11 +41,14 @@
                 %a.time{href: "#"}
                   = short_time time_log.out
   
-              - elsif user.must_time_out?(date)
-                = form_tag(time_out_path, method: :put) do
-                  = button_tag "Time Out"
+              - else
+                %a.time{href: "#"}
+                  No time out
   
             - else
               - if user.timed_out?(date)
                 = short_time time_log.out
+
+              - else
+                No time out
   
