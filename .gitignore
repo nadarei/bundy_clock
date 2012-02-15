@@ -19,3 +19,4 @@ config/database.yml
 .rvmrc
 .DS_Store
 lib/tasks/users.rake
+.google_env
