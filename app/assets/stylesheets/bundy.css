@@ -63,6 +63,17 @@ body, td, th {
   padding: 20px;
 }
 
+#current_month {
+  width: 500px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+}
+
+#current_month h1 {
+  text-align: center;
+}
+
 table {
   margin-top: 40px;
   border-collapse: collapse;

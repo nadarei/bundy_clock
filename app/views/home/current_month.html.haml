@@ -1,11 +1,13 @@
 #current_month
 
-  %p#date= @month
+  %h1= month_year Date.today
+  %br
+  %br
 
   - @dates.each do |date|
 
     %h3
-      = date
+      = just_day date
 
     %table{data: { date: date } }
 
@@ -51,4 +53,6 @@
 
               - elsif user.timed_in?(date)
                 No time out
-  
+
+    %br
+    %br

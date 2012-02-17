@@ -9,7 +9,12 @@ module ApplicationHelper
     time.in_time_zone.strftime("%B %e, %Y")
   end
 
-  def just_day(time)
-    time.in_time_zone.strftime("%A")
+  def just_day(date)
+    date.strftime("%a, %d")
   end
+
+  def month_year(month)
+    month.strftime("%B %Y")
+  end
+
 end

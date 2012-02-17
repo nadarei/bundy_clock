@@ -31,7 +31,6 @@ class TimeLogsController < ApplicationController
       current_comment.update_attributes comments: params[:comment]
     end
 
-    #TODO: redirect also for current month page
     redirect_to :back
   end
 
