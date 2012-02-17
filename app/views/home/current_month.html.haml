@@ -12,7 +12,7 @@
       - @users.each do |user|
         
         - time_log = user.time_logs.find_by_date(date)
-        - next unless time_log
+        -# next unless time_log
 
         %tr{data: { employee: user.name } }
           
@@ -41,7 +41,7 @@
                 %a.time{href: "#"}
                   = short_time time_log.out
   
-              - else
+              - elsif user.timed_in?(date)
                 %a.time{href: "#"}
                   No time out
   
@@ -49,6 +49,6 @@
               - if user.timed_out?(date)
                 = short_time time_log.out
 
-              - else
+              - elsif user.timed_in?(date)
                 No time out
   
