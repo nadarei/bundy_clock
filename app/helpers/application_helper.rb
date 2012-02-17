@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def just_day(date)
-    date.strftime("%a, %d")
+    date.strftime("%a, %e")
   end
 
   def month_year(month)
