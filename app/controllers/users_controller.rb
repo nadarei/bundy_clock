@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @period = UserPeriod.new(@user.time_logs)
-
-    @total_hours = @period.hours
+    @total_hours = @user.time_logs.hours
   end
 end

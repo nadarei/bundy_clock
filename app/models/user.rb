@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :time_logs
+  has_many :time_logs do
+    def hours
+      hours = 0
+      self.each {|log| hours += log.hours if log.hours}
+      hours
+    end
+  end
 
   def time_log_for(date=Date.today)
     # self.time_logs.where(date: date).first
