@@ -15,23 +15,24 @@ class TimeLogsController < ApplicationController
 
   # PUT /time_logs/update
   def update
-    current_time_log = current_user.current_time_log
+    time_log = current_user.time_log_for(params[:date])
 
     if params[:in_out] == 'in'
-      current_time_log.update_attributes in: params[:time]
+      time_log.update_attributes in: params[:time]
     elsif params[:in_out] == 'out'
-      current_time_log.update_attributes out: params[:time]
+      time_log.update_attributes out: params[:time]
     end
 
-    current_comment = current_time_log.comment
+    current_comment = time_log.comment
 
     if current_comment.nil?
-      Comment.create time_log: current_time_log, comments: params[:comment]
+      Comment.create time_log: time_log, comments: params[:comment]
     else
       current_comment.update_attributes comments: params[:comment]
     end
 
-    redirect_to root_url
+    #TODO: redirect also for current month page
+    redirect_to :back
   end
 
 end
