@@ -21,7 +21,6 @@ $('a.time').live('click', function(e) {
   var today = new Date();
   var date = $(this).closest('table').attr('data-date');
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
-  var formedDate = new Date(date + " " + time).toISOString();
   var formedTime = new Date(date + " " + time).toISOString();
   var formedComment;
 
@@ -48,7 +47,7 @@ $('a.time').live('click', function(e) {
     data: {
       _method: "PUT",
       in_out: inOut,
-      date: formedDate,
+      date: date,
       time: formedTime,
       comment: formedComment
     },
