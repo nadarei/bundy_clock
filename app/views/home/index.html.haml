@@ -15,7 +15,7 @@
 
           - if user == current_user
             - if user.timed_in_today?
-              %a.time{data: { timelogid: user.current_time_log.id }, href: "#"}
+              %a.time{href: "#"}
                 = short_time user.current_time_log.in
 
             - else
