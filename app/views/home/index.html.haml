@@ -1,6 +1,6 @@
 #log
   %h1= just_date Time.now
-  %p#day= just_day Time.now
+  %p#day= Date.today.strftime("%A")
   %table{data: { date: Date.today } }
     %tr
       %th
