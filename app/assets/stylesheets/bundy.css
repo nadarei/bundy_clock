@@ -23,6 +23,10 @@ body, td, th {
   font-size: 1.1em;
 }
 
+#top a.current_month {
+  padding: 0px 10px;
+}
+
 #top #aux {
   float: right;
 }

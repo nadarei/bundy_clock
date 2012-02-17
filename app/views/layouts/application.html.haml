@@ -11,6 +11,8 @@
     #top
       %a.home{href: '/'}
         Bundy clock
+      %a.current_month{href: '/current_month'}
+        Current month
       #aux
         - if logged_in?
           = "Hello, #{current_user.email}"
