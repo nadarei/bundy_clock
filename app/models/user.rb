@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :time_logs do
+  has_many :time_logs, order: :date do
     def hours
       hours = 0
       self.each {|log| hours += log.hours if log.hours}
