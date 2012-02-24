@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_filter :ensure_logged_in, except: [:index]
+
   def index
     if logged_in?
       @users = User.order('name')
@@ -9,16 +11,13 @@ class HomeController < ApplicationController
   end
 
   def current_month
-    if logged_in?
-      @year = Date.today.year
-      @month = Date.today.month
-      @days = (1..(Date.civil(@year, @month, -1).day))
-      @dates = @days.map { |d| Date.parse "#{@year}-#{@month}-#{d}" }
-      @users = User.order('name')
-      render action: 'current_month'
-    else
-      render action: 'home'
-    end
+    @year = Date.today.year
+    @month = Date.today.month
+    @days = (1..(Date.civil(@year, @month, -1).day))
+    @dates = @days.map { |d| Date.parse "#{@year}-#{@month}-#{d}" }
+    @users = User.order('name')
   end
 
+  def archive
+  end
 end
