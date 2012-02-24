@@ -4,13 +4,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if logged_in?
+      @user = User.find(params[:id])
 
-    date = Date.today.at_beginning_of_month
+      date = Date.today.at_beginning_of_month
 
-    @time_logs_of_month = @user.time_logs.where(
-      "date >= ? and date < ?", date, date.next_month)
+      @time_logs_of_month = @user.time_logs.where(
+        "date >= ? and date < ?", date, date.next_month)
 
-    @total_hours = @user.time_logs.hours
+      @total_hours = @user.time_logs.hours
+
+      render action: 'show'
+    else
+      redirect_to root_url
+    end
   end
 end
