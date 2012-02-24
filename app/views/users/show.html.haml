@@ -9,7 +9,7 @@
       %th Comments
       %th Hours
 
-    - @user.time_logs.each do |time_log|
+    - @time_logs_of_month.each do |time_log|
       %tr
         %td.date= time_log.date
 
