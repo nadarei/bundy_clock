@@ -1,0 +1,17 @@
+#archive
+
+  %h1 Archive
+  %br
+  %br
+
+  %table
+
+    - @dates.each do |date|
+
+      %tr
+        %td= month_year date
+
+        - @users.each do |user|
+          %td= user.name
+
+        %td All

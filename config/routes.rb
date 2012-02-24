@@ -15,6 +15,8 @@ BundyClock::Application.routes.draw do
 
   get "/current_month" => "home#current_month"
 
+  get "/archive" => "home#archive"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

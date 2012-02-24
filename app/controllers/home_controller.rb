@@ -19,5 +19,8 @@ class HomeController < ApplicationController
   end
 
   def archive
+    @users = User.order('name')
+    today = Date.today
+    @dates = [ today.prev_month, today, today.next_month ]
   end
 end
