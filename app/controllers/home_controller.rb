@@ -10,9 +10,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def current_month
-    @year = Date.today.year
-    @month = Date.today.month
+  def month
+    @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
+    @year = @date.year
+    @month = @date.month
     @days = (1..(Date.civil(@year, @month, -1).day))
     @dates = @days.map { |d| Date.parse "#{@year}-#{@month}-#{d}" }
     @users = User.order('name')

@@ -23,7 +23,7 @@ body, td, th {
   font-size: 1.1em;
 }
 
-#top a.current_month {
+#top a.month {
   padding: 0px 10px;
 }
 
@@ -63,14 +63,14 @@ body, td, th {
   padding: 20px;
 }
 
-#current_month {
+#month {
   width: 500px;
   margin: 40px auto;
   background: white;
   padding: 20px;
 }
 
-#current_month h1 {
+#month h1 {
   text-align: center;
 }
 

@@ -9,13 +9,11 @@
     - @dates.each do |date|
 
       %tr
-        %td= month_year date
+        %th= month_year date
 
         - @users.each do |user|
           %td
-            = user.name
-            = form_tag(user, method: :get) do
-              = hidden_field_tag "date", date
-              = button_tag ">"
+            = link_to user.name, user_path(user, date: date)
 
-        %td All
+        %td 
+          = link_to "All", month_path(date: date)
