@@ -12,6 +12,10 @@
         %td= month_year date
 
         - @users.each do |user|
-          %td= user.name
+          %td
+            = user.name
+            = form_tag(user, method: :get) do
+              = hidden_field_tag "date", date
+              = button_tag ">"
 
         %td All
