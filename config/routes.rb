@@ -13,6 +13,8 @@ BundyClock::Application.routes.draw do
 
   match "/auth/failure" => "sessions#failure"
 
+  get "/month" => "home#month"
+
   get "/month/:date" => "home#month", as: :month
 
   get "/archive" => "home#archive"

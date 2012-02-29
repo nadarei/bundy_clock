@@ -9,10 +9,8 @@
   %body
 
     #top
-      %a.home{href: '/'}
-        Bundy clock
-      %a.month{href: '/month'}
-        = month_year(Date.today)
+      = link_to "Bundy clock", root_url, class: "home"
+      = link_to month_year(Date.today), "/month", class: "month"
       #aux
         - if logged_in?
           = "Hello, #{current_user.email}"
