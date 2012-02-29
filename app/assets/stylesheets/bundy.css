@@ -27,6 +27,10 @@ body, td, th {
   padding: 0px 10px;
 }
 
+#top a.archive {
+  padding: 0px 4px;
+}
+
 #top #aux {
   float: right;
 }
