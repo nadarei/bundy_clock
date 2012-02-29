@@ -14,6 +14,6 @@ class UsersController < ApplicationController
     @time_logs_of_month = @user.time_logs.where(
         "date >= ? and date < ?", @date, @date.next_month)
 
-    @total_hours = @user.time_logs.hours
+    @total_hours = @time_logs_of_month.hours
   end
 end
