@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    date = Date.parse(params[:date]) || Date.today
+    date = params[:date].nil? ? Date.today : Date.parse(params[:date])
     @date = date.at_beginning_of_month
 
     @time_logs_of_month = @user.time_logs.where(
