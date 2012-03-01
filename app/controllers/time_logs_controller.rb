@@ -13,7 +13,7 @@ class TimeLogsController < ApplicationController
     redirect_to root_url
   end
 
-  # PUT /time_logs/update
+  # PUT /time_logs/update -- to be deprecated
   def update
     time_log = current_user.time_log_for(params[:date])
 
