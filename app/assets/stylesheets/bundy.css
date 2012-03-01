@@ -120,3 +120,18 @@ a:hover {
   border-bottom: solid 1px #ccc;
   border-right: solid 1px #ccc;
 }
+
+/*
+ * Form
+ */
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+
+.popup-dialog {
+  padding: 10px;
+  background: white;
+  border: solid 1px #888; }

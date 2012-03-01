@@ -19,6 +19,12 @@ BundyClock::Application.routes.draw do
 
   get "/archive" => "home#archive"
 
+  match "/leaves/:id/edit" => "leaves#edit"
+
+  resources :users
+  resources :leaves
+  resources :time_logs
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -32,7 +38,6 @@ BundyClock::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :users
 
   # Sample resource route with options:
   #   resources :products do

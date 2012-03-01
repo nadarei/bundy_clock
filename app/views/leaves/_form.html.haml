@@ -1,0 +1,15 @@
+%h3 Select leave:
+= form_for time_log, url: { action: 'update', controller: 'leaves' } do |f|
+  %fieldset
+    %h4 Leave type:
+    - ['sick', 'emergency', 'vacation'].each do |leave_type|
+      %fieldset.field
+        = f.radio_button 'leave_type', leave_type
+        = f.label "leave_type_#{leave_type}", leave_type.capitalize
+
+    -# %fieldset.field
+      = check_box 'time_log', 'leave_half_day'
+      = label 'time_log', 'leave_half_day', "Half day?"
+
+    %fieldset.actions
+      = f.submit "Save"

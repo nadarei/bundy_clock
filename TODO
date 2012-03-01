@@ -1,19 +1,25 @@
-- update index page to dynamically load user records (do not hardcode)
-- create TimeLog model, time_logs table
-  - columns: date, in, out, user_id
-  - belongs_to :user
-  - update user 
-- create Comment model, comments table
-- TimeLog model has many comments (description)
-- omniauth (alternative to authlogic using Google) 
+Leaves
+- create new LeavesController (but actually for TimeLog)
+  - edit/update
+  - edit (partial + respond_to js)
+  - html.haml -> something else
+ 
+in your views/leaves/edit.js.erb:
+$(".file-leave.popup-dialog").html(<%= escape_javascript render(partial: 'leaves/_form',
+locals: { time_log: @time_log) } %>)
 
-TimeLogs
-- get timelog of user for the day
-  - @time_log = @user.time_logs.find_by_date(current_date)
-  - or @time_log = TimeLog.new
-  - ideally: user will have @user.current_time_log
-- look for one-button submit helper
-- update action in TimeLogsController
-- review rails naming convention (controller names)
-- save the time_log in create action
+in your views/leaves/_form.html.haml:
 
+Leaves
+rake routes
+
+- ajaxify the form
+  - on update, clear .file-leave.popup-dialog
+  - 
+
+= form_for time_log, url: leave_path(time_log) do |f|
+  = f.radio_button :leave_type, leave_type
+  = f.label "leave_type_#{leave_type}, leave_type.capitalize
+
+update en.yml:
+  - check internationalization in Rails for ActiveRecord

@@ -9,6 +9,7 @@
       %th Time Out
       %th Comments
       %th Hours
+      %th
 
     - @time_logs_of_month.each do |time_log|
       %tr
@@ -37,6 +38,8 @@
             = time_log.hours.round(2)
           - else
             = "-"
+        %td.leave
+          = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
 
     %tr.total
       %td
@@ -46,3 +49,6 @@
       %td
       %td.hours
         %strong= @total_hours.round(2)
+
+  %section.file-leave.popup-dialog
+ 
