@@ -1,0 +1,29 @@
+- @time_logs_of_month.each do |time_log|
+  %tr
+    %td.date= time_log.date
+
+    %td.in
+      - if time_log.in
+        = short_time time_log.in
+      - else
+        = "-"
+
+    %td.out
+      - if time_log.out
+        = short_time time_log.out
+      - else
+        = "-"
+
+    %td.comment
+      - if time_log.comment
+        = time_log.comment.comments
+      - else
+        = "-"
+
+    %td.hours
+      - if time_log.hours
+        = time_log.hours.round(2)
+      - else
+        = "-"
+    %td.leave
+      = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
