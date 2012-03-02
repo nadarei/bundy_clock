@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   end
 
   def timed_in?(date)
-    time_log_for(date)
+    log = time_log_for(date)
+    log && log.in
   end
 
   def must_time_out?(date)
