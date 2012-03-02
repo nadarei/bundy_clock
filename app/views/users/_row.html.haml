@@ -1,29 +1,36 @@
-- @time_logs_of_month.each do |time_log|
+- @dates_of_month.each do |date|
+
+  - time_log = @user.time_log_for(date)
+
   %tr
-    %td.date= time_log.date
+    %td.date= date
 
     %td.in
-      - if time_log.in
+      - if @user.timed_in?(date)
         = short_time time_log.in
       - else
-        = "-"
+        = "No time in"
 
     %td.out
-      - if time_log.out
+      - if @user.timed_out?(date)
         = short_time time_log.out
       - else
-        = "-"
+        = "No time out"
 
     %td.comment
-      - if time_log.comment
+      - if @user.any_comments?
         = time_log.comment.comments
       - else
         = "-"
 
     %td.hours
-      - if time_log.hours
+      - if time_log && time_log.hours
         = time_log.hours.round(2)
       - else
         = "-"
+
     %td.leave
-      = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
+      -if time_log
+        = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
+      - else
+        = button_to "File leave", { action: 'create', controller: 'leaves', user_id: @user.id, date: date }, remote: true

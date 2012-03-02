@@ -8,12 +8,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    date = params[:date].nil? ? Date.today : Date.parse(params[:date])
-    @date = date.at_beginning_of_month
+    @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
 
-    @time_logs_of_month = @user.time_logs.where(
-        "date >= ? and date < ?", @date, @date.next_month)
+    @dates_of_month = (@date.beginning_of_month..@date.end_of_month)
 
-    @total_hours = @time_logs_of_month.hours
+    time_logs_of_month = @user.time_logs conditions: { date: @dates_of_month }
+
+    @total_hours = time_logs_of_month.hours.round(2)
   end
 end

@@ -1,9 +1,18 @@
 class LeavesController < ApplicationController
+
+  def create
+    @time_log = TimeLog.create user_id: params[:user_id], date: params[:date] 
+
+    respond_to do |format|
+      format.js { render :create }
+    end
+  end
+
   def edit
     @time_log = TimeLog.find(params[:id])
 
     respond_to do |format|
-      format.js { render action: 'edit' }
+      format.js { render :edit }
     end
   end
 
