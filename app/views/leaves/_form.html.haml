@@ -1,5 +1,5 @@
 %h3 Select leave:
-= form_for time_log, url: { action: 'update', controller: 'leaves' } do |f|
+= form_for time_log, url: leafe_path(time_log) do |f|
   %fieldset
     %h4 Leave type:
     - ['sick', 'emergency', 'vacation'].each do |leave_type|
