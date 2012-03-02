@@ -12,7 +12,7 @@ class LeavesController < ApplicationController
     @time_log = TimeLog.find(params[:id])
 
     respond_to do |format|
-      format.js { render :edit }
+      format.js { render :create }
     end
   end
 
