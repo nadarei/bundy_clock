@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     log && log.out
   end
   
-  def update_time?(date=Date.today)
+  def any_comments?(date=Date.today)
     log = time_log_for(date)
     log && log.comment
   end

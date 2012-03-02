@@ -46,6 +46,6 @@
 
         %td.comment
 
-          - if user.update_time?
+          - if user.any_comments?
             = user.current_time_log.comment.comments
 
