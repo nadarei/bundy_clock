@@ -17,10 +17,12 @@ class LeavesController < ApplicationController
   end
 
   def update
-    time_log = TimeLog.find(params[:id])
+    @time_log = TimeLog.find(params[:id])
 
-    time_log.update_attributes params[:time_log]
+    @time_log.update_attributes params[:time_log]
 
-    redirect_to :back
+    respond_to do |format|
+      format.js { render :update }
+    end
   end
 end
