@@ -10,7 +10,7 @@
 
     #top
       = link_to "Bundy clock", root_url, class: "home"
-      = link_to month_year(Date.today), "/month", class: "month"
+      = link_to Date.today.to_s(:month_year), "/month", class: "month"
       #aux
         - if logged_in?
           = "Hello, #{current_user.email}"

@@ -1,13 +1,13 @@
 #month
 
-  %h1= month_year @date
+  %h1= @date.to_s(:month_year)
   %br
   %br
 
   - @dates.each do |date|
 
     %h3
-      = just_day date
+      = date.to_s(:daily)
 
     %table{data: { date: date.strftime("%Y/%m/%d") } }
 

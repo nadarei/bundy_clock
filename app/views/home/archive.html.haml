@@ -9,7 +9,7 @@
     - @dates.each do |date|
 
       %tr
-        %th= month_year date
+        %th= date.to_s(:month_year)
 
         - @users.each do |user|
           %td
