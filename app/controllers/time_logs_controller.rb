@@ -18,7 +18,11 @@ class TimeLogsController < ApplicationController
     time_log = current_user.time_log_for(params[:date])
 
     if params[:in_out] == 'in'
-      time_log.update_attributes in: params[:time]
+      if time_log.nil?
+        time_log = TimeLog.create user: current_user, date: params[:date], in: params[:time]
+      else
+        time_log.update_attributes in: params[:time]
+      end
     elsif params[:in_out] == 'out'
       time_log.update_attributes out: params[:time]
     end
