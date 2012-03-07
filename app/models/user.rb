@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: true
+
   has_many :time_logs, order: :date do
     def hours
       hours = 0
