@@ -1,5 +1,6 @@
-$('.file-leave.popup-dialog').remove();
-$('tr#<%= params[:date] %>)
+$('.file-leave.popup-dialog').empty();
+$('tr#<%= @time_log.date %>')
   .find('td.leave')
-  .replaceWith('<%= escape_javascipt(render(partial: 'users/row',
-               locals: {obj: @time_log})) %>');
+  .html(
+      <%= render(partial: 'leave',
+        locals: { time_log: @time_log }).to_json.html_safe %>);

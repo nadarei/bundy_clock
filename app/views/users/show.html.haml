@@ -11,7 +11,8 @@
       %th Hours
       %th Leaves
 
-    = render 'row'
+    - @dates_of_month.each do |date|
+      = render partial: 'row', locals: {user: @user, date: date}
 
     %tr.total
       %td

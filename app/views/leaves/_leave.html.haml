@@ -1,0 +1,6 @@
+- if time_log && time_log.leave_type
+  = time_log.leave_type
+- elsif time_log && time_log.leave_type.nil?
+  = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
+- else
+  = button_to "File leave", { action: 'create', controller: 'leaves', user_id: user.id, date: date }, remote: true

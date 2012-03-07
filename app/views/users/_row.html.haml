@@ -1,38 +1,31 @@
-- @dates_of_month.each do |date|
+- time_log = @user.time_log_for(date)
 
-  - time_log = @user.time_log_for(date)
+%tr{ id: date }
+  %td.date= date
 
-  %tr{ id: date }
-    %td.date= date
+  %td.in
+    - if @user.timed_in?(date)
+      = short_time time_log.in
+    - else
+      = "No time in"
 
-    %td.in
-      - if @user.timed_in?(date)
-        = short_time time_log.in
-      - else
-        = "No time in"
+  %td.out
+    - if @user.timed_out?(date)
+      = short_time time_log.out
+    - else
+      = "No time out"
 
-    %td.out
-      - if @user.timed_out?(date)
-        = short_time time_log.out
-      - else
-        = "No time out"
+  %td.comment
+    - if @user.any_comments?(date)
+      = time_log.comment.comments
+    - else
+      = "-"
 
-    %td.comment
-      - if @user.any_comments?(date)
-        = time_log.comment.comments
-      - else
-        = "-"
+  %td.hours
+    - if time_log && time_log.hours
+      = time_log.hours.round(2)
+    - else
+      = "-"
 
-    %td.hours
-      - if time_log && time_log.hours
-        = time_log.hours.round(2)
-      - else
-        = "-"
-
-    %td.leave
-      - if time_log && time_log.leave_type
-        = time_log.leave_type
-      - elsif time_log && time_log.leave_type.nil?
-        = button_to "File leave", { action: 'edit', controller: 'leaves', id: time_log.id }, remote: true
-      - else
-        = button_to "File leave", { action: 'create', controller: 'leaves', user_id: @user.id, date: date }, remote: true
+  %td.leave
+    = render partial: 'leaves/leave', locals: {time_log: time_log, user: @user, date: date}
