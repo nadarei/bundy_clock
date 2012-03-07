@@ -9,7 +9,7 @@
     %h3
       = just_day date
 
-    %table{data: { date: date } }
+    %table{data: { date: date.strftime("%Y/%m/%d") } }
 
       - @users.each do |user|
         

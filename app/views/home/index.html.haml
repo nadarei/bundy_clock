@@ -1,7 +1,7 @@
 #log
   %h1= just_date Time.now
   %p#day= Date.today.strftime("%A")
-  %table{data: { date: Date.today } }
+  %table{data: { date: Date.today.strftime("%Y/%m/%d") } }
     %tr
       %th
       %th Time In
