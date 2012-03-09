@@ -10,7 +10,9 @@ class TimeLogsController < ApplicationController
   def time_out
     current_user.current_time_log.update_attributes out: Time.now
 
-    redirect_to root_url
+    respond_to do |format|
+      format.js
+    end
   end
 
   # PUT /time_logs/update -- to be deprecated
