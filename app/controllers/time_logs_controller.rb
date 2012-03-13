@@ -3,7 +3,9 @@ class TimeLogsController < ApplicationController
   def time_in 
     current_user.time_logs.create date: Date.today, in: Time.now
 
-    redirect_to root_url
+    respond_to do |format|
+      format.js
+    end
   end
 
   # PUT /time_logs/time_out
@@ -11,7 +13,7 @@ class TimeLogsController < ApplicationController
     current_user.current_time_log.update_attributes out: Time.now
 
     respond_to do |format|
-      format.js
+      format.js { render :time_in }
     end
   end
 
