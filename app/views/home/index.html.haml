@@ -9,32 +9,4 @@
       %th Comments
 
     - @users.each do |user|
-      %tr{data: { employee: user.name } }
-        %td= link_to user.name, user, class: "user"
-        %td.in
-
-          - if user == current_user
-            - if user.timed_in_today?
-              %a.time{href: "#"}
-                = short_time user.current_time_log.in
-
-            - else
-              = form_tag(time_in_path, method: :post) do
-                = button_tag "Time In"
-
-          - else
-            - if user.timed_in_today?
-              = short_time user.current_time_log.in
-
-            - else
-              not in yet
-
-        %td.out
-
-          = render partial: 'out', locals: { user: user }
-          
-        %td.comment
-
-          - if user.any_comments?
-            = user.current_time_log.comment.comments
-
+      = render partial: 'row', locals: { user: user }
