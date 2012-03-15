@@ -1,10 +1,14 @@
 class TimeLog < ActiveRecord::Base
   belongs_to :user
   has_one :comment
-  #validates :time_in, { :format => %r, :on => :update }
-  #validates :time_out, { :format => %r, :on => :update }
-  #validates :time_out_is_after_time_in, on: :update
-  #validates :time_in_is_before_time_out, on: :update
+
+  validate :unique_time_log_by_user_and_date, on: :create
+
+  def unique_time_log_by_user_and_date
+    unless TimeLog.find_by_date_and_user_id(self.date, self.user_id).nil?
+      errors.add(:base, "time log must be unique by date and user")
+    end
+  end
 
   def hours
     if out
