@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316100905) do
+ActiveRecord::Schema.define(:version => 20120316104758) do
 
   create_table "comments", :force => true do |t|
     t.text     "comments"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20120316100905) do
     t.float    "leave_duration"
     t.string   "leave_type"
   end
+
+  add_index "time_logs", ["date", "user_id"], :name => "index_time_logs_on_date_and_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
