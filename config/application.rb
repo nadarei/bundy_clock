@@ -53,8 +53,9 @@ module BundyClock
 
     config.assets.compile = true
     config.assets.precompile += [
-      'bundy.css', 'application.css',
-      'application.js', 'update.js'
+      'application.css',
+      'application.js',
+      'update.js'
     ]
   end
 end
