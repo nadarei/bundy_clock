@@ -25,11 +25,17 @@ class TimeLogsController < ApplicationController
   end
 
   # POST /time_logs/time_in
-  def time_in
-    current_user.time_logs.create date: Date.today, in: Time.now
+  def time_in 
+    @time_log = current_user.time_logs.create date: Date.today, in: Time.now
 
-    respond_to do |format|
-      format.js
+    if @time_log.valid?
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js { render file: 'shared/js_error' }
+      end
     end
   end
 
