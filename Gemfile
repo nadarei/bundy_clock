@@ -28,16 +28,3 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'thin'
 gem 'omniauth-google-oauth2', git: 'git://github.com/zquestz/omniauth-google-oauth2.git'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
