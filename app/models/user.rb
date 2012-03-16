@@ -53,4 +53,10 @@ class User < ActiveRecord::Base
   def timed_out_today?
     timed_out? Date.today
   end
+
+  before_create :generate_api_key
+  def generate_api_key(force=true)
+    return  if self.api_key && !force
+    self.api_key = "%064x" % rand(2**256)
+  end
 end

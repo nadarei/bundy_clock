@@ -46,8 +46,13 @@
               = "Hello, #{current_user.email}"
 
             %li
-              %a{href: logout_path}
+              %a{href: settings_path}
                 %span.icon!= "&#009881;"
+                %strong My account
+
+            %li
+              %a{href: logout_path}
+                %span.icon!= "&#008961;"
                 %strong Logout
 
           - else

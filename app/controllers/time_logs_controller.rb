@@ -1,4 +1,7 @@
 class TimeLogsController < ApplicationController
+
+  before_filter :ensure_logged_in_via_api, only: [:index]
+
   # GET /time_logs
   # Returns time logs.
   #
@@ -10,18 +13,19 @@ class TimeLogsController < ApplicationController
   #     bundy.co/time_log?from=2012-03-01&to=2012-04-05
   #
   def index
+
     @time_logs = TimeLog
     @time_logs = @time_logs.where('date >= ?', Date.parse(params[:from]))  if params[:from]
     @time_logs = @time_logs.where('date <= ?', Date.parse(params[:to]))  if params[:to]
     @time_logs = @time_logs.all
 
     respond_to do |format|
-      format.js { render json: @time_logs }
+      format.html { render json: @time_logs }
     end
   end
 
   # POST /time_logs/time_in
-  def time_in 
+  def time_in
     current_user.time_logs.create date: Date.today, in: Time.now
 
     respond_to do |format|

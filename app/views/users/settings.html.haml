@@ -1,0 +1,14 @@
+%section.settings
+  %form
+    %label
+      Your API key:
+    %input{type: 'text', value: @user.api_key}
+
+    %p
+      You may access the API using:
+
+    %ul
+      %li
+        %code= time_logs_url + "?api_key=YOUR_KEY"
+      %li
+        %code= time_logs_url + "?api_key=YOUR_KEY&from=2012-03-31&to=2012-04-04"

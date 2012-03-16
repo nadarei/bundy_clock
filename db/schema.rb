@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120229084216) do
+ActiveRecord::Schema.define(:version => 20120316100905) do
 
   create_table "comments", :force => true do |t|
     t.text     "comments"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120229084216) do
     t.datetime "updated_at"
     t.string   "uid"
     t.string   "email"
+    t.string   "api_key"
   end
 
 end

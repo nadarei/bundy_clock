@@ -23,8 +23,13 @@ BundyClock::Application.routes.draw do
 
   resources :users
   resources :leaves
+
+  # /time_log (JS)
   resources :time_logs
-  
+
+  # /me (Account settings)
+  get "/me" => "users#settings", as: :settings
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

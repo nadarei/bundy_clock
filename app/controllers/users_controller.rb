@@ -19,4 +19,8 @@ class UsersController < ApplicationController
 
     @total_hours = time_logs_of_month.hours.round(2)
   end
+
+  def settings
+    @user = current_user
+  end
 end
