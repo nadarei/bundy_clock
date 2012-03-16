@@ -10,7 +10,10 @@ class UsersController < ApplicationController
 
     @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
 
-    @dates_of_month = (@date.beginning_of_month..@date.end_of_month)
+    end_date = @date.end_of_month
+    end_date = Date.today  if @date.end_of_month > Date.today
+
+    @dates_of_month = (@date.beginning_of_month..end_date)
 
     time_logs_of_month = @user.time_logs conditions: { date: @dates_of_month }
 

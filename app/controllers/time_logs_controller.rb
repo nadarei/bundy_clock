@@ -46,7 +46,9 @@ class TimeLogsController < ApplicationController
     @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
     @year = @date.year
     @month = @date.month
-    @days = (1..(Date.civil(@year, @month, -1).day))
+    end_date = Date.civil(@year, @month, -1).day
+    end_date = Date.today.day  if @date == Date.today
+    @days = (1..end_date)
     @dates = @days.map { |d| Date.parse "#{@year}-#{@month}-#{d}" }
     @users = User.order('name')
   end
