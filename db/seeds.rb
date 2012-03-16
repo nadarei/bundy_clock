@@ -7,8 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "Seeding users..."
-['Ace', 'Benj', 'Mikong', 'Rico'].each do |name|
-  User.create(name: name)
+puts ""
+
+['John', 'Jason', 'Jennifer', 'Jordan'].each do |name|
+  email = "#{name.downcase}@gmail.com"
+  puts " * %-10s (%s)" % [name, email]
+
+  User.create name: name, email: email
 end
 
-puts "Done."
+puts ""
+puts "Done. Default users created."
+puts "You may want to create your own users using `rake db:create_users`."

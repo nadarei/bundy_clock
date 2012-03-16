@@ -1,6 +1,34 @@
 require 'csv'
 
 namespace :db do
+  desc "Create users"
+  task :create_users => :environment do
+    if ENV['for'].nil?
+      puts "Usage: rake create_users for=john,jane,ace@domain.com [reset=1]"
+      puts ""
+      puts "Creates users for the given users."
+      puts "Add 'reset=1' to erase current users."
+      puts ""
+      exit
+    end
+
+    names, domain = ENV['for'].split('@')
+    names = names.split(',')
+
+    if ENV['reset']
+      puts "Destroying all users..."
+      User.all.each &:destroy
+    end
+
+    puts "Creating users for @#{domain}..."
+    puts ""
+    names.each do |name|
+      u = User.create name: name.capitalize, email: "#{name}@#{domain}"
+      puts " * %-10s (%s)" % [u.name, u.email]
+    end
+
+  end
+
   desc "Import time data from a CSV file"
   task :import => :environment do
 
