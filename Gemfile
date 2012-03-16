@@ -5,9 +5,10 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-# Use MySQL locally in development mode
+# Use MySQL or Sqlite locally in development mode
 group :development, :test do
   gem 'mysql2'
+  gem 'sqlite3'
 end
 
 # Use postgresql for Heroku.
