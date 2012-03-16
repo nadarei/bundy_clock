@@ -1,6 +1,7 @@
-#user
-  %h1= @user.name
-  %h3= @date.to_s(:month_year)
+%section.user
+  %hgroup
+    %h3= @user.name
+    %p= @date.to_s(:month_year)
 
   %table
     %tr
@@ -17,6 +18,7 @@
     %tr.total
       %td
         %strong Total Hours
+      %td
       %td
       %td
       %td

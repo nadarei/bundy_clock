@@ -1,12 +1,12 @@
-#month
+- section :month
 
-  %h1= @date.to_s(:month_year)
-  %br
-  %br
+%section.month
+
+  %h3= @date.to_s(:month_year)
 
   - @dates.each do |date|
 
-    %h3
+    %h4
       = date.to_s(:daily)
 
     %table{data: { date: date.strftime("%Y/%m/%d") } }

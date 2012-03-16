@@ -1,0 +1,438 @@
+@import 'common';
+
+//
+// A table.
+//
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    color: #606080 * 1.5; }
+
+  th, td {
+    text-align: center;
+    font-size: 9pt;
+    border-bottom: dotted 1px #ccc;
+    padding: 8px 10px;
+
+    &:first-child, {
+      text-align: left; } }
+
+  tr.group > * {
+    color: #aaa;
+    background: #eee;
+    text-align: center; }
+
+  tr.sub-0 > * {
+    border-top: solid 1px #aaa; }
+
+  // Overrides
+  .left, .first {
+    text-align: left; }
+}
+
+//
+// Definition list
+//
+dl {
+  & {
+    margin: 0;
+    border-bottom: solid 1px #eee;
+    @include pie-clearfix; }
+
+  dt, dd {
+    border-top: solid 1px #eee;
+    margin: 0;
+    padding: 10px 0;
+    float: left;
+    @include box-sizing(border-box); }
+
+  dt {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 20px;
+    clear: left;
+    width: 35%; }
+
+  dd {
+    width: 65%; }
+}
+
+//
+// Content sections
+//
+//   * `%section` - A regular section.
+//   * `%section.full` - A full-width section.
+//
+// Example for section:
+//
+//     # HAML
+//     %section
+//       %h3
+//       %dl
+//       -# tables also work
+//
+// Example for heading:
+//
+//     # HAML
+//     %section
+//       %hgroup
+//         %h3 Feb 2012
+//         %p Available so and so
+//       %dl
+//
+section {
+  & {
+    width: 60%;
+    @include section-card; }
+
+  &.full {
+    width: 100%; }
+
+  //
+  // Main headings
+  //
+  hgroup {
+    border-bottom: solid 1px #eee;
+
+    margin: 0 0 10px 0;
+    padding: 7px 0 12px 0;
+
+    h3, p {
+      margin: 0;
+      padding: 0; }
+
+    h3 {
+      font-size: 32pt; }
+
+    h3 i {
+      font-style: normal;
+      font-size: 1em;
+      color: #505070 * 1.8; }
+
+    h3 i:before {
+      content: '/ '; }
+
+    p {
+      font-size: 1.1em;
+      color: #555;
+      @include montserrat-caps; } }
+
+  h3 {
+    margin: 0;
+    padding: 0 0 20px 0;
+
+    color: #505060;
+
+    font-size: 22pt;
+
+    font-family: 'helvetica neue', sans-serif;
+    font-weight: 100; }
+
+
+  h4 {
+    text-align: center;
+    @include border-radius(3px);
+    margin: 20px 0;
+    padding: 8px;
+    color: #777;
+
+    @include montserrat-caps;
+
+    background: #f3f3f3; }
+
+  .halves {
+    overflow: hidden;
+    margin: 0 -20px; }
+
+  .halves>div {
+    @include box-sizing(border-box);
+    padding: 0 20px;
+    float: left;
+    margin: 0;
+    width: 50%; }
+
+  .halves>div:nth-child(odd):last-child {
+    width: 100%; }
+
+  .halves>div:nth-child(odd) {
+    clear: left; } }
+
+// ============================================================================
+
+table.days-breakdown {
+  table-layout: fixed;
+  margin: 20px 0;
+  border: solid 2px #ccc;
+  $bluish: mix(white, #eaeafa);
+
+  tr.week {
+    td.pad {
+      background: mix(white, $bluish, 10%); }
+
+    td {
+      height: 100px !important;
+      border: solid 1px #eee;
+      width: 100% / 7;
+
+      font-size: 8pt;
+      text-align: left;
+      vertical-align: top; }
+
+    div.day {
+      display: block;
+      margin: -8px 0 10px -10px;
+      width: 3em;
+
+      text-align: center;
+      text-shadow: 1px 1px 0 rgba(white, 0.1);
+
+      border-bottom: solid 1px #ddd;
+      border-right: solid 1px #ddd;
+      background: #eee;
+
+      padding: 5px;
+      line-height: 1.2;
+
+      .date {
+        color: #999;
+        font-size: 8pt; }
+
+      .day {
+        font-size: 11pt;
+        @include montserrat-caps;
+        color: #888; } }
+
+    .line {
+      display: block; }
+
+    // Status
+    .status {
+      float: right;
+      margin: 0 0 10px 10px;
+      width: 60%;
+      text-align: right;
+      font-size: 12pt;
+
+      .absent {
+        font-weight: bold;
+        font-size: 18pt;
+        color: #a35 * 1.2; }
+
+      .halfday {
+        font-weight: bold;
+        font-size: 18pt;
+        color: mix(#683 * 1.4, white, 40%); }
+
+      .present {
+        font-weight: bold;
+        font-size: 18pt;
+        color: #683 * 1.4; }
+
+      .leave {
+        color: #683 * 1.4; }
+
+      .off {
+        color: #abc; }
+
+      .nonworking {
+        font-size: 10pt;
+        color: #abc; } }
+
+    .details {
+      margin-top: 10px;
+      font-size: 8pt; }
+  }
+
+  //
+  // Summary line
+  //
+  tr.summary {
+    // Reset
+    h4 {
+      @include box-shadow(none);
+      border: 0;
+      margin: 0;
+      padding: 0; }
+
+    // Basic
+    td {
+      overflow: hidden;
+      font-size: 8pt;
+      color: #666;
+      padding: 20px;
+      text-align: center;
+      @include box-shadow(inset 0 2px 2px rgba(black, 0.1));
+      background: $bluish; }
+
+    // left/right
+    .info {
+      float: left; }
+
+    .details {
+      float: right; }
+
+    // Info
+    h4 {
+      display: inline-block;
+      font-size: 1.3em;
+      background: transparent;
+      line-height: 1.5em;
+      margin-right: 10px; }
+
+    .info .aspect {
+      background: transparent;
+      @include box-shadow(none); }
+
+    // A thingie
+    .aspect {
+      display: inline-block;
+      background: rgba(white, 0.5);
+      padding: 1px 5px;
+      @include border-radius(1px);
+      @include box-shadow(1px 1px 1px rgba(black, 0.1));
+      margin: 0 5px; }
+
+    .deduction, .bonus {
+      padding: 3px 8px;
+      margin-right: -5px;
+      margin-left: 5px;
+      &:before { margin-right: 5px; } }
+
+    .bonus {
+      background: rgba(#3a3, 0.2);
+      &:before { content: '+'; } }
+
+    .deduction {
+      background: rgba(#a33, 0.2);
+      &:before { content: '-'; } }
+  }
+
+  // Faux-table
+  dl {
+    & {
+      clear: both;
+      border-bottom: 0; }
+
+    dt, dd {
+      line-height: 16px;
+      border-bottom: 0;
+      border-top: 0;
+      margin: 0;
+      padding: 5px 0; }
+
+    dt {
+      font-size: 0.9em;
+      text-align: left;
+      color: #444; }
+
+    dd {
+      color: #999;
+      text-align: right; }
+
+    &.halfday, &.absent {
+      dt, dd {
+        color: $orange; } }
+    &.late {
+      dt, dd {
+        color: #a83 * 1.2; } }
+  }
+
+  // Borderable:
+  dl, blockquote, p {
+    border-top: solid 1px #eee; }
+
+  blockquote, p {
+      margin: 0;
+      padding: 5px 0; }
+
+  // Comment
+  blockquote {
+    color: #aaa;
+
+    &:before {
+      content: '"'; } }
+}
+
+//
+// Lists
+//
+section.list {
+  ul, li {
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 0; }
+
+  ul a {
+    padding: 10px;
+    font-size: 1.4em;
+    color: #888;
+    text-decoration: none;
+    border-bottom: solid 1px #eee;
+    display: block; }
+
+  ul a:hover {
+    background: #fcfcfc; }
+}
+
+//
+// Message
+//
+
+section.message {
+  text-align: center;
+  padding: 100px 20px;
+
+  .updating:before {
+    display: block;
+    text-align: center;
+    font-size: 200px;
+    line-height: 150px;
+    color: #ddd;
+    content: '\2305'; }
+
+  h3, p {
+    margin: 10px 0;
+    padding: 0; }
+
+  p {
+    color: #666;
+    font-size: 1.2em; } }
+
+// ============================================================================
+//
+// Money breakdown
+//
+table.breakdown {
+  th { color: #988; text-align: right; }
+  td { text-align: left; }
+
+  & {
+    table-layout: fixed; }
+
+  th {
+    width: 50%; }
+
+  th, td {
+    vertical-align: top;
+    border-bottom: solid 1px #eee; }
+
+  i {
+    color: #aaa;
+    font-style: normal; }
+
+  tr:last-child {
+    th, td {
+      border-bottom: 0; } }
+
+  // Total lines
+  tr.total {
+    th, td {
+      font-size: 1.2em; }
+
+    td {
+      font-weight: bold; } }
+}
+

@@ -2,23 +2,58 @@
 %html
   %head
     %title BundyClock
-    = stylesheet_link_tag "bundy"
+    = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
+    :javascript
+      WebFontConfig = {
+        google: {
+          families: [
+            'Montserrat'
+          ]
+        }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+
 
   %body
 
     #top
-      = link_to "Bundy clock", root_url, class: "home"
-      = link_to Date.today.to_s(:month_year), "/month", class: "month"
-      #aux
-        - if logged_in?
-          = "Hello, #{current_user.email}"
-          %a{href: logout_path} Logout
+      %nav.reports
+        %ul
+          - if logged_in?
+            %li
+              = link_to "Today", root_url, class: "home #{'active' if @section == :today}"
+            %li
+              = link_to Date.today.to_s(:month_year), "/month", class: "month #{'active' if @section == :month}"
+            %li
+              = link_to "Archive", archive_path, class: "archive #{'active' if @section == :archive}"
 
-        - else
-          %a{href: login_path} Login
-      %a.archive{href: '/archive'}
-        Archive
+      %nav.aux
+        %ul
+
+          - if logged_in?
+            %li
+              = "Hello, #{current_user.email}"
+
+            %li
+              %a{href: logout_path}
+                %span.icon!= "&#009881;"
+                %strong Logout
+
+          - else
+            %li
+              %a{href: login_path}
+                %span.icon!= "&#008961;"
+                %strong Login
 
     = yield

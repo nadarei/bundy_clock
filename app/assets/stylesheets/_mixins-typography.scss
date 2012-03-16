@@ -1,0 +1,22 @@
+$montserrat: "Montserrat", sans-serif;
+
+@mixin montserrat {
+  & {
+    font-weight: 400;
+    font-family: sans-serif; }
+
+  .wf-montserrat-n4-active & {
+    font-family: $montserrat;
+    -webkit-font-smoothing: antialiased; } }
+
+@mixin montserrat-caps {
+  & {
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-family: sans-serif; }
+
+  .wf-montserrat-n4-active & {
+    font-family: $montserrat;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased; } }

@@ -17,7 +17,7 @@ BundyClock::Application.routes.draw do
 
   get "/month/:date" => "time_logs#month", as: :month
 
-  get "/archive" => "time_logs#archive"
+  get "/archive" => "time_logs#archive", as: :archive
 
   match "/leaves/:id/edit" => "leaves#edit"
 

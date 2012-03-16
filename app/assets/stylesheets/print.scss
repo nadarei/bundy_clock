@@ -1,0 +1,19 @@
+@import 'common';
+
+//
+// Print style!
+//
+body.print {
+  & {
+    padding-top: 0; }
+
+  #content {
+    width: 100%;
+    padding: 0; }
+
+  #content > * {
+    margin: 0; }
+
+  #top {
+    display: none; } }
+
