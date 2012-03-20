@@ -29,4 +29,8 @@ class TimeLog < ActiveRecord::Base
   def user_email
     user.email
   end
+
+  def comment_text
+    comment && comment.comments
+  end
 end

@@ -20,7 +20,7 @@ class TimeLogsController < ApplicationController
     @time_logs = @time_logs.all
 
     respond_to do |format|
-      format.json { render json: @time_logs.to_json(methods: [:user_name, :user_email]) }
+      format.json { render json: @time_logs.to_json(methods: [:user_name, :user_email, :comment_text]) }
     end
   end
 
