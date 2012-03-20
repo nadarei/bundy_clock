@@ -12,47 +12,7 @@
     %table{data: { date: date.strftime("%Y/%m/%d") } }
 
       - @users.each do |user|
-        
-        - time_log = user.time_logs.find_by_date(date)
-        -# next unless time_log
-
-        %tr{data: { employee: user.name } }
-          
-          %td.user= link_to user.name, user, class: "user"
-          %td.in
-
-            - if user == current_user
-              - if user.timed_in?(date)
-                %a.time{href: "#"}
-                  = short_time time_log.in
-              - else
-                %a.time{href: "#"}
-                  No time in 
-  
-            - else
-              - if user.timed_in?(date)
-                = short_time time_log.in
-  
-              - else
-                No time in
-  
-          %td.out
-  
-            - if user == current_user
-              - if user.timed_out?(date)
-                %a.time{href: "#"}
-                  = short_time time_log.out
-  
-              - elsif user.timed_in?(date)
-                %a.time{href: "#"}
-                  No time out
-  
-            - else
-              - if user.timed_out?(date)
-                = short_time time_log.out
-
-              - elsif user.timed_in?(date)
-                No time out
+        = render partial: 'row_month', locals: { date: date, user: user } 
 
     %br
     %br
