@@ -18,18 +18,15 @@ $('a.time').live('click', function(e) {
   }
 
   var comment = prompt("Why did you change it?");
-  var today = new Date();
+
   var date = $(this).closest('table').attr('data-date');
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
   var formedTime = new Date(date + " " + time).toISOString();
+  
   var formedComment;
-
   var inOut = $(this).closest('td').attr('class');
-  var tr = $(this).closest('tr');
-  var employee = tr.attr('data-employee');
-
   var timed = $(this).text();
-  var commented = tr.find('td.comment').text().trim();
+  var commented = $(this).closest('td.comment').text().trim();
 
   if (inOut === "in") {
     formedComment = "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
@@ -50,11 +47,6 @@ $('a.time').live('click', function(e) {
       date: date,
       time: formedTime,
       comment: formedComment
-    },
-    success: function(data) {
-      var html = $(data).find("tr[data-employee='"+employee+"']").html();
-
-      tr.html(html);
     }
   });
 });

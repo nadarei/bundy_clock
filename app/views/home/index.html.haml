@@ -13,5 +13,4 @@
       %th Comments
 
     - @users.each do |user|
-      %tr{ data: { employee: user.name }, id: row_id(Date.today, user) }
       = render partial: 'row', locals: { user: user }

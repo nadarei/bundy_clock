@@ -1,5 +1,7 @@
-%tr{data: { employee: user.name }, id: user.id }
-  %td= link_to user.name, user, class: "user"
+%tr{ id: row_id(Date.today, user) }
+
+  %td.user= link_to user.name, user
+
   %td.in
 
     - if user == current_user

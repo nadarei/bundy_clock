@@ -70,7 +70,10 @@ class TimeLogsController < ApplicationController
       current_comment.update_attributes comments: params[:comment]
     end
 
-    redirect_to :back
+    respond_to do |format|
+      format.js { render :time_in }
+    end
+
   end
 
   def month

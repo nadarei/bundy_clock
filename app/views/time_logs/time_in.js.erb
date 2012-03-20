@@ -1,3 +1,3 @@
-$('tr#<%= current_user.id %>').replaceWith(
+$('tr#<%= row_id(Date.today, current_user) %>').replaceWith(
     <%= render(partial: 'home/row',
       locals: { user: current_user }).to_json.html_safe %>);
