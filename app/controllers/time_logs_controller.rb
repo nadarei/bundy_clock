@@ -50,6 +50,7 @@ class TimeLogsController < ApplicationController
 
   # PUT /time_logs/update -- to be deprecated
   def update
+    @date = Date.parse(params[:date])
     time_log = current_user.time_log_for(params[:date])
 
     if params[:in_out] == 'in'
@@ -70,10 +71,16 @@ class TimeLogsController < ApplicationController
       current_comment.update_attributes comments: params[:comment]
     end
 
-    respond_to do |format|
-      format.js { render :time_in }
-    end
 
+    if @date == Date.today
+      respond_to do |format|
+        format.js { render :time_in }
+      end
+    else
+      respond_to do |format|
+        format.js { render :update }
+      end
+    end
   end
 
   def month
