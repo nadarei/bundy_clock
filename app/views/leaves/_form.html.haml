@@ -2,7 +2,7 @@
 = form_for time_log, url: leafe_path(time_log), remote: true do |f|
   %fieldset
     %h4 Leave type:
-    - ['sick', 'emergency', 'vacation'].each do |leave_type|
+    - TimeLog::LEAVE_TYPES.each do |leave_type|
       %fieldset.field
         = f.radio_button 'leave_type', leave_type
         = f.label "leave_type_#{leave_type}", leave_type.capitalize

@@ -1,4 +1,6 @@
 class TimeLog < ActiveRecord::Base
+  LEAVE_TYPES = %w[emergency sick vacation]
+
   has_one :comment
   belongs_to :user
 
