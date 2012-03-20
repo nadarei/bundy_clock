@@ -21,4 +21,12 @@ class TimeLog < ActiveRecord::Base
       self.comment = c
     end
   end
+
+  def user_name
+    user.name
+  end
+
+  def user_email
+    user.email
+  end
 end
