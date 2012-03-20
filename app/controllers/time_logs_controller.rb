@@ -20,7 +20,7 @@ class TimeLogsController < ApplicationController
     @time_logs = @time_logs.all
 
     respond_to do |format|
-      format.html { render json: @time_logs }
+      format.js { render json: @time_logs }
     end
   end
 
