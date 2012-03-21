@@ -19,34 +19,39 @@ $('a.time').live('click', function(e) {
 
   var comment = prompt("Why did you change it?");
 
-  var date = $(this).closest('table').attr('data-date');
+  var date = $(this).closest('[data-date]').attr('data-date');
+
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
   var formedTime = new Date(date + " " + time).toISOString();
   
   var formedComment;
   var inOut = $(this).closest('td').attr('class');
-  var timed = $(this).text();
+  var timed = $(this).text().trim();
   var commented = $(this).closest('td.comment').text().trim();
 
+  var data = {
+    _method: "PUT",
+    time_log: {
+      date: date
+    }
+  };
+
   if (inOut === "in") {
-    formedComment = "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['comment_text'] = "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['in'] = formedTime;
   }
   else if (commented && (inOut === "out")) {
-    formedComment = commented + ", changed " + "Time Out: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['comment_text'] = commented + ", changed " + "Time Out: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['out'] = formedTime;
   }
   else {
-    formedComment = "Changed Time Out: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['comment_text'] = "Changed Time Out: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['out'] = formedTime;
   }
 
   $.ajax({
     url: "/time_logs/update",
     type: "POST",
-    data: {
-      _method: "PUT",
-      in_out: inOut,
-      date: date,
-      time: formedTime,
-      comment: formedComment
-    }
+    data: data
   });
 });

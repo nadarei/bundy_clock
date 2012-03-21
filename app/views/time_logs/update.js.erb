@@ -1,3 +1,3 @@
 $('tr#<%= row_id(@date, current_user) %>').replaceWith(
-    <%= render(partial: 'row_month',
+    <%= render(partial: @partial,
       locals: { date: @date, user: current_user }).to_json.html_safe %>);

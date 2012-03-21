@@ -50,36 +50,22 @@ class TimeLogsController < ApplicationController
 
   # PUT /time_logs/update -- to be deprecated
   def update
-    @date = Date.parse(params[:date])
-    time_log = current_user.time_log_for(params[:date])
+    @user = current_user
+    @date = Date.parse(params[:time_log][:date]) || Date.today
+    @log = @user.time_logs.find_or_initialize_by_date(@date)
 
-    if params[:in_out] == 'in'
-      if time_log.nil?
-        time_log = TimeLog.create user: current_user, date: params[:date], in: params[:time]
-      else
-        time_log.update_attributes in: params[:time]
-      end
-    elsif params[:in_out] == 'out'
-      time_log.update_attributes out: params[:time]
+    @log.update_attributes params[:time_log]
+
+    referer_path = URI(request.referer).path.split('/')[1]
+    @partial = case referer_path
+      when nil then "home/row"
+      when "month" then "month_row"
+      when "users" then "users/row"
+      else "Unknown"
     end
 
-    current_comment = time_log.comment
-
-    if current_comment.nil?
-      Comment.create time_log: time_log, comments: params[:comment]
-    else
-      current_comment.update_attributes comments: params[:comment]
-    end
-
-
-    if @date == Date.today
-      respond_to do |format|
-        format.js { render :time_in }
-      end
-    else
-      respond_to do |format|
-        format.js { render :update }
-      end
+    respond_to do |format|
+      format.js
     end
   end
 

@@ -1,7 +1,7 @@
 - time_log = @user.time_log_for(date)
 
-%tr{ id: row_id(date, @user) }
-  %td.date= date.strftime("%Y/%m/%d")
+%tr{ id: row_id(date, @user), data: { date: date.strftime("%Y/%m/%d") } }
+  %td.date= date.strftime("%a %d")
 
   %td.in
     - if @user.timed_in?(date)
