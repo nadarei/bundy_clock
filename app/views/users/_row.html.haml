@@ -1,22 +1,43 @@
 - time_log = @user.time_log_for(date)
 
 %tr{ id: row_id(date, @user), data: { date: date.strftime("%Y/%m/%d") } }
+
   %td.date= date.strftime("%a %d")
 
   %td.in
-    - if @user.timed_in?(date)
-      %a.time{href: "#"}
-        = short_time time_log.in
+
+    - if @user == current_user
+      - if @user.timed_in?(date)
+        %a.time{href: "#"}
+          = short_time time_log.in
+      
+      - else
+        %a.time{href: "#"}
+          = "No time in"
+
     - else
-      %a.time{href: "#"}
+      - if @user.timed_in?(date)
+        = short_time time_log.in
+
+      - else
         = "No time in"
 
   %td.out
-    - if @user.timed_out?(date)
-      %a.time{href: "#"}
-        = short_time time_log.out
+
+    - if @user == current_user
+      - if @user.timed_out?(date)
+        %a.time{href: "#"}
+          = short_time time_log.out
+      
+      - else
+        %a.time{href: "#"}
+          = "No time out"
+
     - else
-      %a.time{href: "#"}
+      - if @user.timed_out?(date)
+        = short_time time_log.out
+      
+      - else
         = "No time out"
 
   %td.comment
@@ -32,4 +53,5 @@
       = "-"
 
   %td.leave
-    = render partial: 'leaves/leave', locals: {time_log: time_log, user: @user, date: date}
+    - if @user == current_user
+      = render partial: 'leaves/leave', locals: { time_log: time_log, user: @user, date: date }
