@@ -12,7 +12,7 @@
     %table{data: { date: date.strftime("%Y/%m/%d") } }
 
       - @users.each do |user|
-        = render partial: 'row_month', locals: { date: date, user: user } 
+        = render partial: 'month_row', locals: { date: date, user: user } 
 
     %br
     %br
