@@ -56,12 +56,10 @@ class TimeLogsController < ApplicationController
 
     @log.update_attributes params[:time_log]
 
-    referer_path = URI(request.referer).path.split('/')[1]
-    @partial = case referer_path
-      when nil then "home/row"
-      when "month" then "month_row"
-      when "users" then "users/row"
-      else "Unknown"
+    @partial = case params[:row_format]
+      when 'month' then "month_row"
+      when 'user' then "users/row"
+      else "home/row"
     end
 
     respond_to do |format|

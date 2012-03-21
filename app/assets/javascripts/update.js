@@ -23,14 +23,18 @@ $('a.time').live('click', function(e) {
 
   // ISO8601 date format: 2012-01-25T07:12:00.000Z
   var formedTime = new Date(date + " " + time).toISOString();
-  
-  var formedComment;
+
   var inOut = $(this).closest('td').attr('class');
+
   var timed = $(this).text().trim();
+
   var commented = $(this).closest('td.comment').text().trim();
+
+  var section = $(this).closest('section').attr('class');
 
   var data = {
     _method: "PUT",
+    row_format: section,
     time_log: {
       date: date
     }
