@@ -12,7 +12,7 @@ $('a.time').live('click', function(e) {
 
   if (time === null) {
     return;
-  } else if (!time.match(/^\d+:\d\d$/)) {
+  } else if (!time.match(/^\d+:[0-5]\d$/)) {
     alert("Time must be in 24-hour HH:MM format.");
     return;
   }
