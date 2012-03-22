@@ -1,5 +1,5 @@
-$('.file-leave.popup-dialog').empty();
-$('tr#<%= @time_log.date %>')
+$(document).trigger('close.facebox');
+$('tr#<%= row_id(@time_log.date, current_user) %>')
   .find('td.leave')
   .html(
       <%= render(partial: 'leave',
