@@ -436,3 +436,11 @@ table.breakdown {
       font-weight: bold; } }
 }
 
+// ============================================================================
+// Month breakdown
+
+table.month {
+  table-layout: fixed;
+
+  td.user, td.in, td.out { width: 100% / 3; }
+}

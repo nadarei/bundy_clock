@@ -9,7 +9,7 @@
     %h4
       = date.to_s(:daily)
 
-    %table{data: { date: date.strftime("%Y/%m/%d") } }
+    %table.month{data: { date: date.strftime("%Y/%m/%d") } }
 
       - @users.each do |user|
         = render partial: 'month_row', locals: { date: date, user: user } 
