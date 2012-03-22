@@ -9,11 +9,24 @@ gem 'rails', '3.1.3'
 group :development, :test do
   gem 'mysql2'
   gem 'sqlite3'
+
+  # RSpec - Testing using describe/it/should.
+  # http://rubygems.org/gems/rspec
   gem 'rspec-rails'
 end
 
 group :test do
+  # Capybara - Integration testing by simulating browsers
+  # http://rubygems.org/gems/capybara
   gem 'capybara'
+
+  # Machinist - Factories to easily make models.
+  # https://github.com/notahat/machinist
+  # gem 'machinist'
+  
+  # Mocha - Stubbing and Mocking.
+  # http://rubygems.org/gems/mocha
+  # gem 'mocha'
 end
 
 # Use postgresql for Heroku.
