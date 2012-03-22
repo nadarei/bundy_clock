@@ -9,6 +9,7 @@ gem 'rails', '3.1.3'
 group :development, :test do
   gem 'mysql2'
   gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 # Use postgresql for Heroku.
