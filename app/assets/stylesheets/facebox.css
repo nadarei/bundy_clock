@@ -28,6 +28,36 @@
   border-radius:4px;
 }
 
+#facebox .content h3{
+    margin: 0;
+    padding: 0 0 20px 0;
+
+    color: #505060;
+
+    font-size: 22pt;
+
+    font-family: 'helvetica neue', sans-serif;
+    font-weight: 100;
+}
+
+
+#facebox .content  h4{
+    text-align: center;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    margin: 20px 0;
+    padding: 8px;
+    color: #777;
+
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-family: sans-serif;
+
+    background: #f3f3f3;
+}
+
 #facebox .content > p:first-child{
   margin-top:0;
 }
