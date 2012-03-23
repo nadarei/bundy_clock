@@ -10,14 +10,16 @@
           = short_time user.current_time_log.in
 
       - else
-        = button_to "Time In", { action: 'time_in', controller: 'time_logs' }, method: :post, remote: true
+        = button_to "Time In", |
+          { action: 'time_in', controller: 'time_logs' }, |
+          method: :post, remote: true |
 
     - else
       - if user.timed_in_today?
         = short_time user.current_time_log.in
 
       - else
-        not in yet
+        = "Not in yet"
 
   %td.out
 
@@ -27,7 +29,9 @@
           = short_time user.current_time_log.out
 
       - elsif user.must_time_out_today? && user.timed_in_today?
-        = button_to "Time Out", { action: 'time_out', controller: 'time_logs' }, method: :put, remote: true
+        = button_to "Time Out", |
+          { action: 'time_out', controller: 'time_logs' }, |
+          method: :put, remote: true |
 
     - else
       - if user.timed_out_today?

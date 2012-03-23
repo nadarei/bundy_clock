@@ -54,4 +54,5 @@
 
   %td.leave
     - if @user == current_user
-      = render partial: 'leaves/leave', locals: { time_log: time_log, user: @user, date: date }
+      = render partial: 'leaves/leave', |
+        locals: { time_log: time_log, user: @user, date: date } |
