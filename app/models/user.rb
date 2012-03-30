@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  include Calendar
+
   def time_log_for(date=Date.today)
     # self.time_logs.where(date: date).first
     self.time_logs.find_by_date(date)
@@ -45,13 +47,8 @@ class User < ActiveRecord::Base
     log && log.comment
   end
 
-  # Tells if date is eligible for leave:
-  # - not a holiday
-  # - not a weekend
-  # - logged for less than 8 hours
-  #  
-  def on_leave?(date)
-    (Calendar.no_work?(date) || under_time?(date)) || !off_day?(date)
+  def absent_or_under_time?(date)
+    !( no_work?(date) || off_day?(date) ) || under_time?(date)
   end
 
   def under_time?(date)
@@ -62,8 +59,8 @@ class User < ActiveRecord::Base
   end
 
   def off_day?(date)
-    off_day = Calendar::OFF_DAYS[self.name]
-    date.strftime("%w") == off_day
+    off_day = OFF_DAYS[self.name]
+    day_of_week(date) == off_day
   end
 
   # Old behavior below!

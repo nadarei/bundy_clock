@@ -48,6 +48,11 @@ module Calendar
     date.saturday? || date.sunday?
   end
 
+  def day_of_week(date)
+    date = to_date(date)
+    date.strftime("%w")
+  end
+
 private
   def to_date(date)
     if date.is_a?(String)
