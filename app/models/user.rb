@@ -1,3 +1,12 @@
+# Example
+#
+#   u = User.find_by_email('benj@nadarei.co')
+#
+#   u.name    #=> "Benj"
+#   u.email   #=> "benj@nadarei.co"
+#
+#   u.on_leave?(today)    #=> true
+#
 class User < ActiveRecord::Base
 
   validates :name, uniqueness: { case_sensitive: false }
@@ -36,6 +45,27 @@ class User < ActiveRecord::Base
     log && log.comment
   end
 
+  # Tells if date is eligible for leave:
+  # - not a holiday
+  # - not a weekend
+  # - logged for less than 8 hours
+  #  
+  def on_leave?(date)
+    (Calendar.no_work?(date) || under_time?(date)) || !off_day?(date)
+  end
+
+  def under_time?(date)
+    log = time_log_for(date)
+    return false if log.nil?
+    full_hours = ( self.name=='Benj' && 5 ) || 8
+    log.hours < full_hours if log.hours
+  end
+
+  def off_day?(date)
+    off_day = Calendar::OFF_DAYS[self.name]
+    date.strftime("%w") == off_day
+  end
+
   # Old behavior below!
   
   def current_time_log
@@ -59,4 +89,5 @@ class User < ActiveRecord::Base
     return  if self.api_key && !force
     self.api_key = "%064x" % rand(2**256)
   end
+
 end

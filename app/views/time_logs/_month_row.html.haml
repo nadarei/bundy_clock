@@ -39,3 +39,8 @@
 
       - elsif user.timed_in?(date)
         No time out
+
+  %td.leave
+    - if user == current_user && user.on_leave?(date)
+      = render partial: 'leaves/leave', |
+        locals: { time_log: time_log, user: user, date: date } |
