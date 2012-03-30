@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   def under_time?(date)
     log = time_log_for(date)
     return false if log.nil?
+    return false if no_work?(date)
     required_hours = FULL_DAY[self.name] || 8
     log.hours < required_hours if log.hours
   end
