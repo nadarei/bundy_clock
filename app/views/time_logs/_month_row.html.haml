@@ -1,6 +1,6 @@
 %tr{ id: row_id(date, user) }
   
-  - time_log = user.time_logs.find_by_date(date)
+  - time_log = user.time_log_for(date)
 
   %td.user= link_to user.name, user
   
@@ -41,6 +41,5 @@
         No time out
 
   %td.leave
-    - if user == current_user && user.absent_or_under_time?(date)
-      = render partial: 'leaves/leave', |
-        locals: { time_log: time_log, user: user, date: date } |
+    = render partial: 'leaves/leave', |
+      locals: { time_log: time_log, user: user, date: date } |
