@@ -48,7 +48,7 @@ class TimeLogsController < ApplicationController
     end
   end
 
-  # PUT /time_logs/update -- to be deprecated
+  # PUT /time_logs/update
   def update
     @user = current_user
     @date = Date.parse(params[:time_log][:date]) || Date.today
