@@ -47,16 +47,21 @@ class User < ActiveRecord::Base
     log && log.comment
   end
 
-  def absent_or_under_time?(date)
-    !( no_work?(date) || off_day?(date) ) || under_time?(date)
+  def absent_or_half_day?(date)
+    log = time_log_for(date)
+    if log.nil?
+      !( no_work?(date) || off_day?(date) )
+    else
+      half_day?(date)
+    end
   end
 
-  def under_time?(date)
+  def half_day?(date)
     log = time_log_for(date)
-    return false if log.nil?
-    return false if no_work?(date)
+    return false if no_work?(date) || off_day?(date)
+    return true if log.hours.nil?
     required_hours = FULL_DAY[self.name] || 8
-    log.hours < required_hours if log.hours
+    log.hours < required_hours/2
   end
 
   def off_day?(date)

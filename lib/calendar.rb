@@ -29,7 +29,7 @@ module Calendar
   ]
 
   OFF_DAYS = { 'Benj' => '1' } # Day of the week: 0..6, 0 is Sunday
-  FULL_DAY = { 'Benj' => 5 } # Number of hours for part-timer
+  FULL_DAY = { 'Benj' => 5.0 } # Number of hours for part-timer
 
   extend self
 
