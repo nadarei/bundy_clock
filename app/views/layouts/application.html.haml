@@ -34,7 +34,7 @@
             %li
               = link_to "Today", root_url, class: "home #{'active' if @section == :today}"
             %li
-              = link_to Date.today.to_s(:month_year), "/month", class: "month #{'active' if @section == :month}"
+              = link_to today.to_s(:month_year), "/month", class: "month #{'active' if @section == :month}"
             %li
               = link_to "Archive", archive_path, class: "archive #{'active' if @section == :archive}"
 

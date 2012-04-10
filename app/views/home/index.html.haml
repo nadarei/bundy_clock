@@ -2,10 +2,10 @@
 
 %section.today
   %hgroup
-    %h3= Date.today.to_s(:long)
-    %p= Date.today.strftime("%A")
+    %h3= @date.to_s(:long)
+    %p= @date.strftime("%A")
 
-  %table{data: { date: Date.today.strftime("%Y/%m/%d") } }
+  %table{data: { date: @date.strftime("%Y/%m/%d") } }
     %tr
       %th
       %th Time In
@@ -13,4 +13,4 @@
       %th Comments
 
     - @users.each do |user|
-      = render partial: 'row', locals: { user: user }
+      = render partial: 'row', locals: { user: user, date: @date }

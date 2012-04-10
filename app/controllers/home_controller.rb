@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   def index
     if logged_in?
       @users = User.order('name')
+      @date = Time.zone.now.to_date
       render 'index'
     else
       render 'home'

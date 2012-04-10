@@ -21,8 +21,9 @@ class User < ActiveRecord::Base
   end
 
   include Calendar
+  include DateHelpers
 
-  def time_log_for(date=Date.today)
+  def time_log_for(date=today)
     # self.time_logs.where(date: date).first
     self.time_logs.find_by_date(date)
   end
@@ -42,7 +43,7 @@ class User < ActiveRecord::Base
     log && log.out
   end
   
-  def any_comments?(date=Date.today)
+  def any_comments?(date=today)
     log = time_log_for(date)
     log && log.comment
   end
@@ -72,19 +73,19 @@ class User < ActiveRecord::Base
   # Old behavior below!
   
   def current_time_log
-    time_log_for Date.today
+    time_log_for today
   end
 
   def timed_in_today?
-    timed_in? Date.today
+    timed_in? today
   end
 
   def must_time_out_today?
-    must_time_out? Date.today
+    must_time_out? today
   end
 
   def timed_out_today?
-    timed_out? Date.today
+    timed_out? today
   end
 
   before_create :generate_api_key

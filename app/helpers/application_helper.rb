@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def today
+    Time.zone.now.to_date
+  end
+
   # Sets the current highlighted section.
   def section(section)
     @section = section

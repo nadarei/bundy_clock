@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
+    @date = params[:date].nil? ? today : Date.parse(params[:date])
 
     @dates_of_month = range_for_month_with(@date)
 

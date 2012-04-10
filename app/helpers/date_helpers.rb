@@ -9,8 +9,12 @@ module DateHelpers
   #
   def range_for_month_with(date)
     end_date = date.end_of_month
-    end_date = Date.today  if date.end_of_month > Date.today
+    end_date = today  if date.end_of_month > today
 
     (date.beginning_of_month..end_date)
+  end
+
+  def today
+    Time.zone.now.to_date
   end
 end

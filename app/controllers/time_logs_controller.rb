@@ -2,6 +2,8 @@ class TimeLogsController < ApplicationController
 
   before_filter :ensure_logged_in_via_api, only: [:index]
 
+  include DateHelpers
+
   # GET /time_logs
   # Returns time logs.
   #
@@ -26,7 +28,7 @@ class TimeLogsController < ApplicationController
 
   # POST /time_logs/time_in
   def time_in 
-    @time_log = current_user.time_logs.create date: Date.today, in: Time.now
+    @time_log = current_user.time_logs.create date: today, in: Time.now
 
     if @time_log.valid?
       respond_to do |format|
@@ -51,7 +53,7 @@ class TimeLogsController < ApplicationController
   # PUT /time_logs/update
   def update
     @user = current_user
-    @date = Date.parse(params[:time_log][:date]) || Date.today
+    @date = Date.parse(params[:time_log][:date]) || today
     @log = @user.time_logs.find_or_initialize_by_date(@date)
 
     @log.update_attributes params[:time_log]
@@ -68,11 +70,11 @@ class TimeLogsController < ApplicationController
   end
 
   def month
-    @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
+    @date = params[:date].nil? ? today : Date.parse(params[:date])
     @year = @date.year
     @month = @date.month
     end_date = Date.civil(@year, @month, -1).day
-    end_date = Date.today.day  if @date == Date.today
+    end_date = today.day  if @date == today
     @days = (1..end_date)
     @dates = @days.map { |d| Date.parse "#{@year}-#{@month}-#{d}" }
     @users = User.order('name')
@@ -80,7 +82,6 @@ class TimeLogsController < ApplicationController
 
   def archive
     @users = User.order('name')
-    today = Date.today
     @dates = [ today.prev_month.prev_month, today.prev_month, today ]
   end
 
