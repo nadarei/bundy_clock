@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :ensure_logged_in, except: [:index]
 
+  include DateHelpers
+
   def index
     redirect_to root_url
   end
@@ -10,14 +12,13 @@ class UsersController < ApplicationController
 
     @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
 
-    end_date = @date.end_of_month
-    end_date = Date.today  if @date.end_of_month > Date.today
+    @dates_of_month = range_for_month_with(@date)
 
-    @dates_of_month = (@date.beginning_of_month..end_date)
+    time_logs_of_month = @user.time_logs.where("date >= ? and date <= ?",
+                                               @dates_of_month.begin,
+                                               @dates_of_month.end)
 
-    time_logs_of_month = @user.time_logs conditions: { date: @dates_of_month }
-
-    @total_hours = time_logs_of_month.hours.round(2)
+    @total_hours = time_logs_of_month.hours
   end
 
   def settings
