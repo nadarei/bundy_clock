@@ -40,7 +40,8 @@ module Calendar
   
   def holiday?(date)
     date = to_date(date)
-    HOLIDAYS.include?(date)
+    holidays = HOLIDAYS.map {|h| to_date(h)}
+    holidays.include?(date)
   end
 
   def weekend?(date)
