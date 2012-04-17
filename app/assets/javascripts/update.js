@@ -5,6 +5,7 @@ $.ajaxSetup({
   }
 });
 
+// Time in and out
 $('a.time').live('click', function(e) {
   e.preventDefault();
 
@@ -41,15 +42,11 @@ $('a.time').live('click', function(e) {
   };
 
   if (inOut === "in") {
-    data.time_log['comment_text'] = "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['extra_comment'] = commented + "\n" + "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
     data.time_log['in'] = formedTime;
   }
-  else if (commented && (inOut === "out")) {
-    data.time_log['comment_text'] = commented + ", changed " + "Time Out: " + timed + " -> " + time + " (" + comment + ")";
-    data.time_log['out'] = formedTime;
-  }
-  else {
-    data.time_log['comment_text'] = "Changed Time Out: " + timed + " -> " + time + " (" + comment + ")";
+  else if (inOut === "out") {
+    data.time_log['extra_comment'] = commented + "\n" + " Changed " + "Time Out: " + timed + " -> " + time + " (" + comment + ")";
     data.time_log['out'] = formedTime;
   }
 
@@ -57,5 +54,26 @@ $('a.time').live('click', function(e) {
     url: "/time_logs/update",
     type: "POST",
     data: data
+  });
+});
+
+// Making comment only
+$('img.comment').live('click', function(e) {
+  e.preventDefault();
+
+  var comment = prompt("Comment: ");
+
+  var date = $(this).closest('[data-date]').attr('data-date');
+
+  $.ajax({
+    url: "/time_logs/update",
+    type: "POST",
+    data: {
+      _method: "PUT",
+      time_log: {
+        date: date,
+        extra_comment: comment
+      }
+    }
   });
 });

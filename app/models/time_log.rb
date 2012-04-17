@@ -15,13 +15,26 @@ class TimeLog < ActiveRecord::Base
     end
   end
 
-  def comment_text=(value)
+  def set_comment_text(value, append=false)
     if comment
-      comment.update_attributes comments: value
+      new_value = if append
+                    [comment_text, value].join("\n")
+                  else
+                    value
+                  end
+      comment.update_attributes comments: new_value
     else
       c = Comment.create time_log: self, comments: value
       self.comment = c
     end
+  end
+
+  def comment_text=(value)
+    self.set_comment_text(value, false)
+  end
+
+  def extra_comment=(value)
+    self.set_comment_text(value, true)
   end
 
   def user_name

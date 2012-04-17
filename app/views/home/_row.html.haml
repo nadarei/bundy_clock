@@ -39,5 +39,9 @@
 
   %td.comment
 
-    - if user.any_comments?
-      = user.current_time_log.comment.comments
+    %span
+      - if user.any_comments?
+        = user.current_time_log.comment.comments
+
+      - if user == current_user
+        = image_tag("comment.png", border: 0, class: 'comment')
