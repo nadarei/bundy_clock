@@ -7,15 +7,15 @@ describe 'TimeLog' do
       @log  = TimeLog.create user: @user
     end
 
-    it "should return nil if there's no comment" do
-      @log.comment_text.should == nil
+    it "should return empty if there's no comment" do
+      @log.comment_text.should be nil
     end
 
     it "should set the comment properly" do
       @log.comment_text = "Did something"
 
-      @log.comment.should_not == nil
-      @log.comment.comments.should == "Did something"
+      @log.comments.should_not == []
+      @log.comments.first.comments.should == "Did something"
     end
 
     it "should return the right comment" do

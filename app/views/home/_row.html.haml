@@ -41,7 +41,7 @@
 
     - if user.any_comments?
       - user.current_time_log.comments.each do |comment|
-        = comment
+        = comment.comments
 
     - if user == current_user
       = image_tag("comment.png", border: 0, class: 'comment')
