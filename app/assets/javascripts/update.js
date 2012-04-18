@@ -29,8 +29,6 @@ $('a.time').live('click', function(e) {
 
   var timed = $(this).text().trim();
 
-  var commented = $(this).closest('td.comment').text().trim();
-
   var section = $(this).closest('section').attr('class');
 
   var data = {
@@ -42,11 +40,11 @@ $('a.time').live('click', function(e) {
   };
 
   if (inOut === "in") {
-    data.time_log['extra_comment'] = commented + "\n" + "Changed Time In: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['comment_text'] =  "Time In: " + timed + " -> " + time + " (" + comment + ")";
     data.time_log['in'] = formedTime;
   }
   else if (inOut === "out") {
-    data.time_log['extra_comment'] = commented + "\n" + " Changed " + "Time Out: " + timed + " -> " + time + " (" + comment + ")";
+    data.time_log['comment_text'] =  "Time Out: " + timed + " -> " + time + " (" + comment + ")";
     data.time_log['out'] = formedTime;
   }
 
@@ -63,6 +61,10 @@ $('img.comment').live('click', function(e) {
 
   var comment = prompt("Comment: ");
 
+  if (comment === null) {
+    return;
+  }
+
   var date = $(this).closest('[data-date]').attr('data-date');
 
   $.ajax({
@@ -72,7 +74,7 @@ $('img.comment').live('click', function(e) {
       _method: "PUT",
       time_log: {
         date: date,
-        extra_comment: comment
+        comment_text: comment
       }
     }
   });

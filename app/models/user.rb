@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   
   def any_comments?(date=today)
     log = time_log_for(date)
-    log && log.comment
+    log && log.comments
   end
 
   def absent_or_half_day?(date)
