@@ -41,10 +41,7 @@
         = "No time out"
 
   %td.comment
-    - if @user.any_comments?(date)
-      = time_log.comment.comments
-    - else
-      = "-"
+    = render partial: 'comments/comments', locals: { user: @user, date: date }
 
   %td.hours
     - if time_log && time_log.hours

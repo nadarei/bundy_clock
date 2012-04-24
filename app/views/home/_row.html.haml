@@ -39,9 +39,4 @@
 
   %td.comment
 
-    - if user.any_comments?
-      - user.current_time_log.comments.each do |comment|
-        = comment.comments
-
-    - if user == current_user
-      = image_tag("comment.png", border: 0, class: 'comment')
+    = render partial: 'comments/comments', locals: { user: user, date: date }

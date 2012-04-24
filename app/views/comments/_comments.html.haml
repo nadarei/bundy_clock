@@ -1,0 +1,7 @@
+- if user.any_comments?(date)
+  - user.time_log_for(date).comments.each do |comment|
+    = comment.comments
+    %br
+
+- if user == current_user
+  = image_tag("comment.png", border: 0, class: 'comment')
