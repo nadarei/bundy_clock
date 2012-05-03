@@ -4,3 +4,4 @@
 //= require update
 //= require facebox
 //= require facebox-ext
+//= require dropdown

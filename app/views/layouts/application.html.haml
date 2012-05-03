@@ -42,14 +42,20 @@
         %ul
 
           - if logged_in?
-            %li
-              = "Hello, #{current_user.email}"
+            %li.message
+              = "Hello!"
 
-            %li
+            %li.dropdown
               %a{href: settings_path}
                 %span.icon!= "&#009881;"
-                %strong My account
+                %strong= current_user.email
+              %ul
+                %li
+                  %a{href: settings_path} API settings
+                %li
+                  %a{href: '#'} File leave
 
+                
             %li
               %a{href: logout_path}
                 %span.icon!= "&#008961;"
