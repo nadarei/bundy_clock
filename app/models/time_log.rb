@@ -4,6 +4,8 @@ class TimeLog < ActiveRecord::Base
   has_many :comments
   belongs_to :user
 
+  attr_writer :comment_text
+
   validates :date, uniqueness: {
     scope: :user_id,
     message: "user should have only one time log per date" },
@@ -15,10 +17,6 @@ class TimeLog < ActiveRecord::Base
     end
   end
 
-  def comment_text=(value)
-    self.comments.create(comments: value)
-  end
-
   def user_name
     user.name
   end
@@ -28,10 +26,17 @@ class TimeLog < ActiveRecord::Base
   end
 
   def comment_text
-    if comments.any?
+    @comment_text ||= if comments.any?
       comments.collect(&:comments).join("\n")
     else
       nil
     end
+  end
+
+private
+
+  after_save :create_comment_text
+  def create_comment_text
+    self.comments.create(comments: @comment_text) if @comment_text
   end
 end
