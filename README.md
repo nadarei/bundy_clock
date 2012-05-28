@@ -1,5 +1,12 @@
+Bundy clock
+===========
+
+This is the Bundy clock used by [Nadarei.co](http://nadarei.co).
+
 Setup
 -----
+
+Initialize Bundler:
 
     $ bundle
 
