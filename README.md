@@ -31,3 +31,18 @@ Start development env
     $ rails server
 
 (Sourcing the .env file may not be needed if you use RVM)
+
+Console tips
+------------
+
+Run the console on the production environment using:
+
+    $ bundle exec heroku rails console
+
+Here are some common commands:
+
+``` ruby
+# File a leave
+User.find_by_name("Rico").time_logs.find_or_initialize_by_date("2012/03/15")
+_.update_attributes leave_type: "vacation", leave_duration: 0.5
+```
