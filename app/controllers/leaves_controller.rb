@@ -1,4 +1,8 @@
 class LeavesController < ApplicationController
+  before_filter :ensure_logged_in, only: [:index]
+
+  def index
+  end
 
   def create
     @time_log = TimeLog.create user_id: params[:user_id], date: params[:date] 
