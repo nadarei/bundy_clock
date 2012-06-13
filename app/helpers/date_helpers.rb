@@ -14,6 +14,11 @@ module DateHelpers
     (date.beginning_of_month..end_date)
   end
 
+  def range_of_months
+    alpha = Date.parse('Feb 2012')
+    (alpha..today).select {|d| d == d.beginning_of_month || d == alpha}
+  end
+
   def today
     Time.zone.now.to_date
   end

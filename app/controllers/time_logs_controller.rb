@@ -82,7 +82,7 @@ class TimeLogsController < ApplicationController
 
   def archive
     @users = User.order('name')
-    @dates = [ today.prev_month.prev_month, today.prev_month, today ]
+    @dates = range_of_months
   end
 
 end
