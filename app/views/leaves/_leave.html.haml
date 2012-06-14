@@ -1,7 +1,7 @@
 - if time_log && time_log.leave_type
   = time_log.leave_type
 
-- elsif user == current_user && user.absent_or_half_day?(date)
+- elsif user == current_user && user.working_day?(date)
 
   - if time_log.nil?
     = button_to "File leave", |
