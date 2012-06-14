@@ -56,11 +56,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def off_day?(date)
-    off_day = OFF_DAYS[self.name]
-    day_of_week(date) == off_day
-  end
-
   # Old behavior below!
   
   def current_time_log

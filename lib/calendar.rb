@@ -35,9 +35,14 @@ module Calendar
 
   def no_work?(date)
     date = to_date(date)
-    weekend?(date) || holiday?(date)
+    weekend?(date) || holiday?(date) || off_day?(date)
   end
   
+  def off_day?(date)
+    off_day = OFF_DAYS[self.name]
+    day_of_week(date) == off_day
+  end
+
   def holiday?(date)
     date = to_date(date)
     holidays = HOLIDAYS.map {|h| to_date(h)}
