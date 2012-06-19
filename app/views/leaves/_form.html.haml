@@ -1,5 +1,5 @@
 %h3 Select leave:
-= form_for time_log, url: leafe_path(time_log), remote: true do |f|
+= form_for time_log, url: leave_path, remote: true do |f|
   %fieldset
     %h4 Leave type:
     - TimeLog::LEAVE_TYPES.each do |leave_type|

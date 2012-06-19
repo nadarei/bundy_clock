@@ -2,5 +2,5 @@ $(document).trigger('close.facebox');
 $('tr#<%= row_id(@time_log.date, current_user) %>')
   .find('td.leave')
   .html(
-      <%= render(partial: 'leave',
+      <%= render(partial: 'leave_column',
         locals: { time_log: @time_log }).to_json.html_safe %>);

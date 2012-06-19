@@ -19,10 +19,11 @@ BundyClock::Application.routes.draw do
 
   get "/archive" => "time_logs#archive", as: :archive
 
-  match "/leaves/:id/edit" => "leaves#edit"
+  match "/leaves/:date/edit" => "leaves#edit", as: :edit_leave
+  match "/leaves/:date" => "leaves#update", as: :leave
 
   resources :users
-  resources :leaves
+  resources :leaves, except: [:edit, :update]
 
   # /time_log (JS)
   resources :time_logs

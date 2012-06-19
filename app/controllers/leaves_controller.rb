@@ -1,32 +1,21 @@
 class LeavesController < ApplicationController
   before_filter :ensure_logged_in, only: [:index]
 
-  def index
-  end
-
-  def create
-    @time_log = TimeLog.create user_id: params[:user_id], date: params[:date] 
-
-    respond_to do |format|
-      format.js { render :create }
-    end
-  end
-
   def edit
-    @time_log = TimeLog.find(params[:id])
+    @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
 
     respond_to do |format|
-      format.js { render :create }
+      format.js
     end
   end
 
   def update
-    @time_log = TimeLog.find(params[:id])
+    @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
 
     @time_log.update_attributes params[:time_log]
 
     respond_to do |format|
-      format.js { render :update }
+      format.js
     end
   end
 end
