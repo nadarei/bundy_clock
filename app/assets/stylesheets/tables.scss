@@ -444,3 +444,12 @@ table.month {
 
   td.user, td.in, td.out { width: 100% / 3; }
 }
+
+// ============================================================================
+// Leaves breakdown
+
+table.leave {
+  table-layout: fixed;
+
+  td.date, td.leave { width: 33%; }
+}
