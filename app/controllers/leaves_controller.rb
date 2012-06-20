@@ -7,14 +7,13 @@ class LeavesController < ApplicationController
 
   def create
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
+    @time_log.attributes = params[:time_log]
 
-    if @time_log.new_record?
-      @time_log.create params[:time_log]
+    if @time_log.save || @time_log.update
+      flash[:notice] = "Leave successfully filed"
     else
-      @time_log.update_attributes params[:time_log]
+      flash[:error] = "New leave not filed"
     end
-
-    render text: 'Leave filed'
   end
 
   def edit

@@ -67,4 +67,10 @@
                 %span.icon!= "&#008961;"
                 %strong Login
 
+    - if flash[:notice]
+      %p.notice= flash[:notice]
+
+    - if flash[:error]
+      %p.error= flash[:error]
+
     = yield

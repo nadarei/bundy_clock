@@ -1,0 +1,10 @@
+- section :created_leave
+%section.created_leave
+
+%h3 Leave filed
+
+%table.leave
+  %tr
+    %td.date= @time_log.date.strftime("%Y/%m/%d")
+    %td.leave
+      = render partial: 'leave_column', locals: { time_log: @time_log, user: current_user, date: @time_log.date }
