@@ -3,9 +3,9 @@
 
   %h3 File leave
 
--#  = form_for @time_log do |f|
--#    %fieldset
--#      %h4 Effective date:
--#      = f.text_field :date, size: 11, value: "YYYY/MM/DD"
--#
--#      = render partial: 'leave_type', locals: { f: f }
+  = form_for @time_log, url: leaves_path do |f|
+    %fieldset
+      %h4 Effective date:
+      = f.text_field :date, size: 11, value: "YYYY/MM/DD"
+
+      = render partial: 'leave_type', locals: { f: f }
