@@ -6,6 +6,7 @@
   = form_for @time_log, url: leaves_path do |f|
     %fieldset
       %h4 Effective date:
-      = f.text_field :date, size: 11, id: 'pickdate' 
+      = f.text_field :date, size: 11, id: 'datepicker'
+      %br
 
       = render partial: 'leave_type', locals: { f: f }

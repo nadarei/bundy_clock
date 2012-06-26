@@ -1,0 +1,3 @@
+// do not show if time_log.nil
+$('#leave-type').show().replaceWith(
+    <%= render(partial: "leave_type", locals: { f: @time_log }).to_json.html_safe %>);

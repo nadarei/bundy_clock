@@ -5,6 +5,15 @@ class LeavesController < ApplicationController
     @time_log = current_user.time_logs.new
   end
 
+  #TODO: create route for below
+  def leave_type
+    @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
     @time_log.attributes = params[:time_log]
