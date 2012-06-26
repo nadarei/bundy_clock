@@ -1,8 +1,9 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 
 //= require update
 //= require facebox
 //= require facebox-ext
 //= require dropdown
-//= require jquery-ui-1.8.21.custom.min
+//= require datepicker
