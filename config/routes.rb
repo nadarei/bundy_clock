@@ -19,6 +19,8 @@ BundyClock::Application.routes.draw do
 
   get "/archive" => "time_logs#archive", as: :archive
 
+  get "/leaves/leave_type" => "leaves#leave_type", as: :leave_type
+
   resources :leaves, except: [:edit, :update]
 
   get "/leaves/:date/edit" => "leaves#edit", as: :edit_leave

@@ -1,13 +1,11 @@
-%fieldset#leave-type
+%fieldset.leave-type
   %h4 Leave type:
-  - TimeLog::LEAVE_TYPES.each do |leave_type|
-    %fieldset.field
-      = f.radio_button 'leave_type', leave_type
-      = f.label "leave_type_#{leave_type}", leave_type.capitalize
+  = fields_for time_log do |f|
+    - TimeLog::LEAVE_TYPES.each do |type|
+      %fieldset.field
+        = f.radio_button 'leave_type', type
+        = f.label "leave_type_#{type}", type.capitalize
 
   %fieldset.field
-    = check_box 'time_log', 'leave_duration', {}, '0.5', '1.0'
+    = check_box 'time_log', 'leave_duration', { checked: 'unchecked' }, '0.5', '1.0'
     = label 'time_log', 'leave_duration', "Half day?"
-
-  %fieldset.actions
-    = f.submit "Save"

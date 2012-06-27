@@ -5,7 +5,6 @@ class LeavesController < ApplicationController
     @time_log = current_user.time_logs.new
   end
 
-  #TODO: create route for below
   def leave_type
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
 
@@ -16,9 +15,8 @@ class LeavesController < ApplicationController
 
   def create
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
-    @time_log.attributes = params[:time_log]
 
-    if @time_log.save || @time_log.update
+    if @time_log.update_attributes params[:time_log]
       flash[:notice] = "Leave successfully filed"
     else
       flash[:error] = "New leave not filed"

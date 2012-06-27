@@ -6,17 +6,24 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-  $('#leave-type').hide();
+  $('fieldset:not(.date)').hide();
   $('#datepicker').datepicker({
-    dateFormat: "yy-mmydd",
+    dateFormat: "yy/mm/dd",
     onClose: function(dateText, inst) {
 
-      date = dateText;
+      var date = dateText;
+      if (date === null) {
+        return;
+      }
+
+      var data = {
+        date: date
+      };
 
       $.ajax({
-        url:  "leaves/leave_type",
+        url:  "/leaves/leave_type",
         type: "GET",
-        data: date
+        data: data
       });
     }
   });

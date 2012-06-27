@@ -4,4 +4,4 @@
 - elsif user == current_user && user.absent_or_half_day?(date)
 
   = button_to "File leave", |
-    { action: 'edit', controller: 'leaves', date: date }, remote: true |
+    { action: 'update', controller: 'leaves', date: date }, remote: true |

@@ -1,3 +1,6 @@
 %h3 Select leave:
 = form_for time_log, url: leave_path, remote: true do |f|
-  = render partial: 'leave_type', locals: { f: f }
+  = render partial: 'leave_type', locals: { time_log: time_log }
+
+  %fieldset.actions
+    = f.submit "Save"
