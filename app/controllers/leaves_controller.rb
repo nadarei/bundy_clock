@@ -17,9 +17,11 @@ class LeavesController < ApplicationController
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
 
     if @time_log.update_attributes params[:time_log]
-      flash[:notice] = "Leave successfully filed"
+      flash[:notice] = @time_log.id_changed? ? "New leave filed" : "Leave updated"
+      redirect_to root_url
+      #redirect_to user_path(current_user), date: params[:date]
     else
-      flash[:error] = "New leave not filed"
+      render :new
     end
   end
 
