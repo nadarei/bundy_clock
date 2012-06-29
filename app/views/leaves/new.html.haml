@@ -9,7 +9,7 @@
       %h4 Effective date:
       = text_field_tag 'date', nil, { size: 11, id: 'datepicker' }
 
-      = render partial: 'leave_type', locals: { time_log: @time_log }
+    = render partial: 'leave_type', locals: { time_log: @time_log }
 
     %fieldset.actions
       = f.submit "Submit"
