@@ -20,8 +20,7 @@ class LeavesController < ApplicationController
 
     if @time_log.update_attributes params[:time_log]
       flash[:notice] = new_record ? "New leave filed" : "Leave updated"
-      redirect_to root_url
-      #redirect_to user_path(current_user), date: params[:date]
+      redirect_to user_path(current_user, date: params[:date])
     else
       render :new
     end
