@@ -16,8 +16,10 @@ class LeavesController < ApplicationController
   def create
     @time_log = current_user.time_logs.find_or_initialize_by_date(params[:date])
 
+    new_record = @time_log.new_record?
+
     if @time_log.update_attributes params[:time_log]
-      flash[:notice] = @time_log.id_changed? ? "New leave filed" : "Leave updated"
+      flash[:notice] = new_record ? "New leave filed" : "Leave updated"
       redirect_to root_url
       #redirect_to user_path(current_user), date: params[:date]
     else
